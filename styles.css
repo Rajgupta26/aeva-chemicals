@@ -552,7 +552,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .reveal-up.is-in { opacity: 1; transform: none; }
 .reveal-words .word > span { display: inline-block; transform: translateY(110%); transition: transform 1s var(--ease-out); transition-delay: calc(var(--i) * 70ms); }
 .reveal-words.is-in .word > span { transform: none; }
-.hero .reveal-up { transition-delay: .3s; }
+.hero .reveal-up { transition-delay: 1s; }
 .hero .hero__stats { transition-delay: 1.3s; }
 
 /* =========================================================
