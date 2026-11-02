@@ -154,8 +154,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .hero {
   position: relative;
   min-height: 100svh;
-  display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 140px var(--gutter) 40px;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  text-align: center;
+  padding: 120px var(--gutter) 80px;
   overflow: hidden;
   isolation: isolate;
   background: #0a2c6b;
@@ -171,11 +172,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   position: absolute; inset: 0; z-index: -1;
   background:
     linear-gradient(180deg, rgba(5, 18, 48, .55) 0%, rgba(5, 18, 48, 0) 30%),
-    linear-gradient(0deg, rgba(4, 22, 32, .92) 0%, rgba(4, 22, 32, .35) 45%, rgba(4, 22, 32, 0) 70%),
-    linear-gradient(90deg, rgba(4, 18, 40, .6) 0%, rgba(4, 18, 40, 0) 60%);
+    radial-gradient(ellipse at center, rgba(4, 18, 40, .55) 0%, rgba(4, 18, 40, .15) 60%, rgba(4, 18, 40, 0) 80%),
+    linear-gradient(0deg, rgba(4, 22, 32, .6) 0%, rgba(4, 22, 32, 0) 35%);
 }
 .hero .grain { z-index: -1; opacity: .12; }
-.hero__inner { max-width: 1100px; }
+.hero__inner { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
 .hero__eyebrow { margin-bottom: 26px; color: rgba(255, 255, 255, .8); }
 .hero__title {
   font-weight: 500;
@@ -185,7 +186,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   color: #fff;
 }
 .hero__title .split { display: block; }
-.hero__title .split:first-child .char { background: var(--text-grad); -webkit-background-clip: text; background-clip: text; color: transparent; background-size: var(--bgw, 100%) 100%; }
 .hero__rotator { display: inline-block; height: .98em; overflow: hidden; vertical-align: bottom; }
 .hero__rot-track { display: block; transition: transform .8s var(--ease); }
 .hero__rot-track > span { display: block; height: .98em; line-height: .98em; white-space: nowrap; }
@@ -194,7 +194,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   font-size: clamp(17px, 1.4vw, 20px); line-height: 1.5;
   color: rgba(255, 255, 255, .82);
 }
-.hero__ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+.hero__ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 34px; }
 .hero__stats {
   margin-top: 70px;
   display: grid; grid-template-columns: repeat(4, 1fr);
@@ -204,7 +204,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .hero__stats b { font-size: clamp(28px, 3vw, 44px); font-weight: 500; letter-spacing: -.02em; color: #fff; }
 .hero__stats span { font-size: 14px; color: rgba(255, 255, 255, .65); }
 .hero__scroll {
-  position: absolute; right: var(--gutter); top: 50%;
+  position: absolute; left: 50%; bottom: 32px; margin-left: -13px;
   width: 26px; height: 42px; border: 1.5px solid rgba(255, 255, 255, .5); border-radius: 14px;
 }
 .hero__scroll span { position: absolute; left: 50%; top: 8px; width: 3px; height: 8px; margin-left: -1.5px; border-radius: 2px; background: #fff; animation: scrollDot 1.8s var(--ease) infinite; }

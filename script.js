@@ -76,17 +76,6 @@
   const counter = { n: 0 };
   $$(".hero__title .split").forEach((s) => splitChars(s, counter));
 
-  // one continuous gradient across the per-character spans of line 1
-  const gradLine = $(".hero__title .split");
-  function paintGradient() {
-    const box = gradLine.getBoundingClientRect();
-    $$(".char", gradLine).forEach((c) => {
-      const r = c.getBoundingClientRect();
-      c.style.backgroundSize = `${box.width}px 100%`;
-      c.style.backgroundPosition = `${box.left - r.left}px 0`;
-    });
-  }
-
   // rotating last word
   const rot = $(".hero__rotator");
   const track = $(".hero__rot-track");
@@ -114,7 +103,6 @@
   }
 
   const start = () => {
-    paintGradient();
     setRotWidth();
     document.body.classList.add("is-ready");
     $$(".hero__title .split").forEach((s) => s.classList.add("is-ready"));
@@ -126,7 +114,7 @@
     if (!reduced) setInterval(nextWord, 2800);
   };
   (document.fonts ? document.fonts.ready : Promise.resolve()).then(start);
-  addEventListener("resize", () => { paintGradient(); setRotWidth(); fitWord(); });
+  addEventListener("resize", () => { setRotWidth(); fitWord(); });
 
   /* ---------- Scroll reveals ---------- */
   $$(".reveal-words").forEach(splitWords);
@@ -140,7 +128,7 @@
     }),
     { threshold: 0.18, rootMargin: "0px 0px -6% 0px" }
   );
-  $$(".reveal-up, .reveal-words, .swatch-demo, .footer__word, .charge-demo").forEach((el) => io.observe(el));
+  $$(".reveal-up, .reveal-words, .footer__word").forEach((el) => io.observe(el));
 
   function countUp(el) {
     if (el.dataset.done) return;
@@ -178,56 +166,6 @@
     cursor.style.left = e.clientX + "px";
     cursor.style.top = e.clientY + "px";
   }, { passive: true });
-
-  /* ---------- AeSop bubbles ---------- */
-  const bubbles = $(".bubbles");
-  for (let i = 0; i < 16; i++) {
-    const b = document.createElement("i");
-    const s = 6 + Math.random() * 22;
-    Object.assign(b.style, {
-      width: s + "px", height: s + "px",
-      left: Math.random() * 100 + "%",
-      animationDuration: 7 + Math.random() * 9 + "s",
-      animationDelay: -Math.random() * 12 + "s",
-    });
-    b.style.setProperty("--dx", (Math.random() * 60 - 30) + "px");
-    bubbles.append(b);
-  }
-
-  /* ---------- AeKomala: cationic molecules attach to the fibre ---------- */
-  const mols = $("#mols");
-  const N = 11;
-  const molEls = Array.from({ length: N }, () => {
-    const m = document.createElement("div");
-    m.className = "mol";
-    m.innerHTML = "<b>+</b>";
-    mols.append(m);
-    return m;
-  });
-  function scatter() {
-    molEls.forEach((m) => {
-      m.style.left = 8 + Math.random() * 84 + "%";
-      m.style.top = 28 + Math.random() * 40 + "%";
-      m.style.transitionDelay = "0s";
-    });
-  }
-  function attach() {
-    molEls.forEach((m, i) => {
-      m.style.left = ((i + 0.5) / N) * 100 + "%";
-      m.style.top = "calc(100% - 22px)";
-      m.style.transitionDelay = i * 0.07 + "s";
-    });
-  }
-  scatter();
-  const chargeIO = new IntersectionObserver((es) => {
-    es.forEach((e) => {
-      if (!e.isIntersecting) return;
-      setTimeout(attach, 400);
-      if (!reduced) setInterval(() => { scatter(); setTimeout(attach, 1900); }, 6000);
-      chargeIO.disconnect();
-    });
-  }, { threshold: 0.4 });
-  chargeIO.observe($(".charge-demo"));
 
   /* ---------- Flowing fabric lines (split panel 2) ---------- */
   const waveG = $("#waveLines");
