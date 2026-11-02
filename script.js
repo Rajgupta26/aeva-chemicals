@@ -298,32 +298,6 @@
     });
   })();
 
-  /* ---------- Footer dot mark (dot-matrix "A") ---------- */
-  const A = [
-    "....#....",
-    "...###...",
-    "...#.#...",
-    "..##.##..",
-    "..#...#..",
-    ".#######.",
-    ".##...##.",
-    "##.....##",
-    "#.......#",
-  ];
-  const dm = $("#dotMark");
-  const ns = "http://www.w3.org/2000/svg";
-  A.forEach((row, y) => [...row].forEach((ch, x) => {
-    const cx = 4.5 + x * 8.9, cy = 4.5 + y * 8.9;
-    const dist = Math.hypot(cx - 40, cy - 40);
-    if (dist > 40) return;
-    const c = document.createElementNS(ns, "circle");
-    c.setAttribute("cx", cx);
-    c.setAttribute("cy", cy);
-    c.setAttribute("r", ch === "#" ? 4.2 : 1.6);
-    c.style.setProperty("--d", ((x + y) * 0.12).toFixed(2) + "s");
-    dm.append(c);
-  }));
-
   /* ---------- Footer giant word: fit to full width ---------- */
   const bigWord = $("#bigWord");
   function fitWord() {

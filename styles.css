@@ -338,11 +338,12 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .capabilities {
   --roll-color: #4f63ff;
   background: var(--footer); color: #fff;
-  padding: clamp(90px, 12vw, 160px) var(--gutter);
+  padding: clamp(76px, 10vw, 130px) var(--gutter);
   text-align: center; position: relative; overflow: hidden;
 }
-.capabilities .eyebrow { margin-bottom: 28px; font-size: 11px; }
+.capabilities .eyebrow { margin-bottom: 28px; font-size: 12px; }
 .cap-list li { line-height: 1; }
+.cap-list .roll--big { font-size: clamp(30px, 4vw, 54px); }
 .cap-list .roll { cursor: pointer; }
 .cap-cursor {
   position: fixed; left: 0; top: 0; z-index: 60; pointer-events: none;
@@ -514,10 +515,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
    FOOTER (screenshot 2 style)
    ========================================================= */
 .footer { background: var(--footer); color: #fff; padding: 70px 14px 22px; --roll-color: var(--mint); overflow: hidden; }
-.footer__mark { display: flex; justify-content: center; margin-bottom: clamp(100px, 14vw, 220px); }
-.footer__mark svg { width: 72px; height: 72px; }
-.footer__mark circle { fill: #fff; transform-box: fill-box; transform-origin: center; animation: dotPulse 3.2s ease-in-out infinite; animation-delay: var(--d); }
-@keyframes dotPulse { 50% { transform: scale(.45); opacity: .5; } }
+.footer__quality { background: transparent; padding: 20px 0 clamp(80px, 9vw, 130px); }
+.footer__quality .section-head { margin-bottom: 48px; }
 .footer__cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
 .footer__h { text-transform: uppercase; font-size: 21px; font-weight: 500; margin-bottom: 28px; letter-spacing: .01em; }
 .footer__h--follow { margin: 46px 0 14px; }
