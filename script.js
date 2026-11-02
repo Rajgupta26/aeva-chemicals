@@ -167,32 +167,136 @@
     cursor.style.top = e.clientY + "px";
   }, { passive: true });
 
-  /* ---------- Flowing fabric lines (split panel 2) ---------- */
-  const waveG = $("#waveLines");
-  const LINES = 22;
-  const paths = Array.from({ length: LINES }, () => {
-    const p = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    waveG.append(p);
-    return p;
-  });
-  let waveVisible = false;
-  new IntersectionObserver((es) => (waveVisible = es[0].isIntersecting)).observe(waveG.closest("svg"));
-  function drawWaves(t) {
-    if (waveVisible || t === 0) {
-      paths.forEach((p, i) => {
-        const base = 40 + i * 16;
-        let d = "";
-        for (let x = 0; x <= 800; x += 20) {
-          const y = base + Math.sin(x * 0.008 + t * 0.0006 + i * 0.25) * (18 + i * 1.2) + Math.sin(x * 0.02 - t * 0.0009) * 6;
-          d += (x ? "L" : "M") + x + " " + y.toFixed(1);
-        }
-        p.setAttribute("d", d);
-        p.setAttribute("stroke-opacity", (0.25 + (i / LINES) * 0.75).toFixed(2));
-      });
+  /* ---------- Liquid formulation study ----------
+     A small texture with GPU refraction, rather than a large autoplay video.
+     The original image remains visible if WebGL is unavailable. */
+  (() => {
+    const scene = $("#liquidScene");
+    const canvas = $(".liquid-scene__canvas", scene);
+    const image = $(".liquid-scene__image", scene);
+    const toggle = $(".liquid-scene__toggle", scene);
+    const motion = matchMedia("(prefers-reduced-motion: reduce)");
+    const gl = canvas.getContext("webgl", { alpha: false, antialias: false, depth: false, powerPreference: "low-power" });
+    if (!gl) return;
+
+    function shader(type, source) {
+      const value = gl.createShader(type);
+      gl.shaderSource(value, source);
+      gl.compileShader(value);
+      if (!gl.getShaderParameter(value, gl.COMPILE_STATUS)) {
+        gl.deleteShader(value);
+        return null;
+      }
+      return value;
     }
-    if (!reduced) requestAnimationFrame(drawWaves);
-  }
-  drawWaves(0);
+    const vertex = shader(gl.VERTEX_SHADER, `
+      attribute vec2 position;
+      varying vec2 uv;
+      void main() { uv = position * 0.5 + 0.5; gl_Position = vec4(position, 0.0, 1.0); }
+    `);
+    const fragment = shader(gl.FRAGMENT_SHADER, `
+      precision mediump float;
+      varying vec2 uv;
+      uniform sampler2D artwork;
+      uniform float phase;
+      uniform float aspect;
+      void main() {
+        vec2 fit = vec2(min(aspect, 1.0), min(1.0 / aspect, 1.0));
+        vec2 p = (uv - 0.5) * fit / 1.05 + 0.5;
+        // Gentle local refraction makes the liquid bend and droplets drift.
+        p.x += 0.014 * sin(p.y * 9.0 + phase) + 0.006 * sin(p.y * 17.0 - phase * 2.0);
+        p.y += 0.012 * sin(p.x * 8.0 - phase) + 0.005 * cos(p.x * 14.0 + phase * 2.0);
+        gl_FragColor = texture2D(artwork, p);
+      }
+    `);
+    if (!vertex || !fragment) return;
+    const program = gl.createProgram();
+    gl.attachShader(program, vertex);
+    gl.attachShader(program, fragment);
+    gl.linkProgram(program);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) return;
+    gl.useProgram(program);
+    const buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]), gl.STATIC_DRAW);
+    const position = gl.getAttribLocation(program, "position");
+    gl.enableVertexAttribArray(position);
+    gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
+    const phase = gl.getUniformLocation(program, "phase");
+    const aspect = gl.getUniformLocation(program, "aspect");
+    gl.uniform1i(gl.getUniformLocation(program, "artwork"), 0);
+
+    let loaded = false, visible = false, paused = false, lost = false;
+    let frame = 0, elapsed = 0, previous = 0;
+    const canAnimate = () => loaded && visible && !paused && !motion.matches && !document.hidden && !lost;
+    function paint() {
+      if (!loaded || lost) return;
+      gl.uniform1f(phase, (elapsed % 20000) * Math.PI / 10000);
+      gl.drawArrays(gl.TRIANGLES, 0, 6);
+    }
+    function tick(now) {
+      frame = 0;
+      if (!canAnimate()) { previous = 0; return; }
+      // Cap at 30 fps and avoid jumps after leaving the viewport.
+      if (!previous || now - previous >= 32) {
+        elapsed += previous ? Math.min(now - previous, 64) : 0;
+        previous = now;
+        paint();
+      }
+      frame = requestAnimationFrame(tick);
+    }
+    function sync() {
+      cancelAnimationFrame(frame);
+      frame = 0;
+      previous = 0;
+      toggle.hidden = !loaded || motion.matches || lost;
+      if (canAnimate()) frame = requestAnimationFrame(tick);
+      else paint();
+    }
+    function resize() {
+      const bounds = scene.getBoundingClientRect();
+      const scale = Math.min(devicePixelRatio || 1, 1.5);
+      canvas.width = Math.max(1, Math.round(bounds.width * scale));
+      canvas.height = Math.max(1, Math.round(bounds.height * scale));
+      gl.viewport(0, 0, canvas.width, canvas.height);
+      gl.uniform1f(aspect, canvas.width / canvas.height);
+      paint();
+    }
+    function load() {
+      if (loaded || !image.naturalWidth || lost) return;
+      const texture = gl.createTexture();
+      gl.bindTexture(gl.TEXTURE_2D, texture);
+      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      try {
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+      } catch { return; }
+      loaded = true;
+      resize();
+      scene.classList.add("is-ready");
+      sync();
+    }
+    image.addEventListener("load", load, { once: true });
+    if (image.complete) load();
+    new ResizeObserver(resize).observe(scene);
+    new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); }).observe(scene);
+    document.addEventListener("visibilitychange", sync);
+    motion.addEventListener("change", sync);
+    toggle.addEventListener("click", () => {
+      paused = !paused;
+      toggle.setAttribute("aria-pressed", String(paused));
+      toggle.setAttribute("aria-label", paused ? "Play liquid animation" : "Pause liquid animation");
+      sync();
+    });
+    canvas.addEventListener("webglcontextlost", () => {
+      lost = true;
+      scene.classList.remove("is-ready");
+      sync();
+    });
+  })();
 
   /* ---------- Footer giant word: fit to full width ---------- */
   const bigWord = $("#bigWord");

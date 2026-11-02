@@ -275,17 +275,40 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 @keyframes roofDrift { to { background-position: 121px 72px, 0 72px, 0 0, 0 0; } }
 
-.sky--dusk { background: linear-gradient(200deg, #0d5aa8 0%, #2b8fd0 35%, #79c3e0 70%, #cfe7ea 100%); }
-.sky--dusk .sky__sun { left: -10%; right: auto; top: 12%; }
-.sky--dusk .sky__haze { display: none; }
-.fabric-wave { position: absolute; inset: 35% -5% 0 -5%; }
-.fabric-wave svg { width: 100%; height: 100%; }
-
-.split-panel--rev .tailor { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; max-width: 640px; }
+/* Original left panel with the liquid visual retained on the right. */
+.formulation { display: grid; grid-template-columns: 1fr 1fr; min-height: 100svh; scroll-margin-top: 72px; }
+.formulation .tailor { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; max-width: 640px; }
 .tailor > div { background: rgba(255, 255, 255, .35); border-radius: 18px; padding: 18px; display: flex; flex-direction: column; gap: 4px; }
 .tailor i { width: 22px; height: 22px; border-radius: 6px; margin-bottom: 8px; }
 .tailor b { font-weight: 600; font-size: 18px; }
 .tailor span { font-size: 14px; opacity: .7; }
+.liquid-scene__toggle:focus-visible { outline: 2px solid #b08b38; outline-offset: 6px; }
+.liquid-scene { position: relative; min-height: 660px; isolation: isolate; overflow: hidden; background: #03271e; }
+.liquid-scene__image, .liquid-scene__canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.liquid-scene__image { object-position: center; }
+.liquid-scene__canvas { opacity: 0; transition: opacity .6s; }
+.liquid-scene.is-ready .liquid-scene__canvas { opacity: 1; }
+.liquid-scene::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(0, 26, 19, .35), transparent 24%, transparent 65%, rgba(0, 20, 15, .85)); }
+.liquid-scene__top, .liquid-scene__bottom { position: absolute; z-index: 1; left: clamp(24px, 3.4vw, 56px); right: clamp(24px, 3.4vw, 56px); display: flex; align-items: center; justify-content: space-between; color: #e8ede2; }
+.liquid-scene__top { top: 30px; font: 400 10px/1.5 "IBM Plex Mono", monospace; letter-spacing: .19em; }
+.liquid-scene__symbol { color: var(--gold); font-size: 30px; line-height: 1; }
+.liquid-scene__bottom { bottom: 34px; align-items: flex-end; }
+.liquid-scene__bottom p { font-size: clamp(32px, 3.2vw, 48px); letter-spacing: -.025em; line-height: 1.1; font-weight: 400; }
+.liquid-scene__bottom p span { color: #cfb66e; }
+.liquid-scene__toggle { width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid rgba(232, 237, 226, .4); border-radius: 50%; background: rgba(0, 26, 19, .3); transition: background .2s, border-color .2s; }
+.liquid-scene__toggle[hidden] { display: none; }
+.liquid-scene__toggle:hover { background: rgba(232, 237, 226, .15); border-color: #e8ede2; }
+.liquid-scene__play { display: none; }
+.liquid-scene__toggle[aria-pressed="true"] .liquid-scene__pause { display: none; }
+.liquid-scene__toggle[aria-pressed="true"] .liquid-scene__play { display: block; }
+@media (max-width: 860px) {
+  .formulation { grid-template-columns: 1fr; min-height: 0; }
+  .liquid-scene { min-height: 0; aspect-ratio: 1; }
+  .liquid-scene__bottom { bottom: 26px; }
+}
+@media (max-width: 560px) {
+  .formulation .tailor { grid-template-columns: 1fr; }
+}
 
 /* =========================================================
    STATS
