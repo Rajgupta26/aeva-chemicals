@@ -106,11 +106,11 @@
       <div class="cap-cursor" id="capCursor" aria-hidden="true"></div>
     </section>
 
-    <!-- ============ SPLIT 2: GREEN / SKY (reversed) ============ -->
-    <section class="split-panel split-panel--rev" id="tailor">
+    <!-- ============ TAILORED FORMULATION ============ -->
+    <section class="formulation" id="tailor" aria-labelledby="tailor-title">
       <div class="split-panel__text green">
         <p class="eyebrow">Built for the bath</p>
-        <h2 class="display reveal-words">Tailor-made for your mill.</h2>
+        <h2 class="display reveal-words" id="tailor-title">Tailor-made for your mill.</h2>
         <p class="reveal-up">Every dyehouse is different. We tune each formulation to your water hardness, your machines, your temperature and your budget — then send a trial sample with a recipe for your machine.</p>
         <div class="tailor reveal-up">
           <div><i style="background:#0F8A9E"></i><b>Water hardness</b><span>Tuned to your water</span></div>
@@ -119,13 +119,14 @@
           <div><i style="background:#0B4636"></i><b>Strength &amp; price</b><span>For your budget</span></div>
         </div>
       </div>
-      <div class="split-panel__visual sky sky--dusk">
-        <div class="sky__sun"></div>
-        <div class="sky__haze"></div>
-        <div class="fabric-wave" aria-hidden="true">
-          <svg viewBox="0 0 800 400" preserveAspectRatio="none"><g id="waveLines" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1"></g></svg>
+      <div class="liquid-scene" id="liquidScene">
+        <img class="liquid-scene__image" src="assets/formulation-liquid.webp" alt="Abstract teal liquid swirl with golden droplets, illustrating chemical formulation" width="1254" height="1254" loading="lazy" decoding="async">
+        <canvas class="liquid-scene__canvas" aria-hidden="true"></canvas>
+        <div class="liquid-scene__top" aria-hidden="true"><span>AEVA CHEMICALS</span><span class="liquid-scene__symbol">✳</span></div>
+        <div class="liquid-scene__bottom">
+          <p>Chemistry,<br><span>tailored.</span></p>
+          <button class="liquid-scene__toggle" type="button" aria-label="Pause liquid animation" aria-pressed="false" hidden><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path class="liquid-scene__pause" d="M9 6v12M15 6v12"/><path class="liquid-scene__play" d="m9 6 9 6-9 6Z"/></svg></button>
         </div>
-        <div class="grain"></div>
       </div>
     </section>
 
@@ -140,11 +141,11 @@
           <div class="q-card__band"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg><span>COA · EVERY LOT</span></div>
           <h3>Batch QC</h3><p>pH, viscosity, solid content and specific gravity, checked on every lot.</p>
         </article>
-        <article class="q-card reveal-up">
+        <article class="q-card q-card--cream reveal-up">
           <div class="fibres"><span>CA</span><span>CO</span><span>PA</span><span>PES</span><span>PAC</span><span>WO</span></div>
           <h3>Wash fastness &amp; staining</h3><p>ISO 105-C06 type wash tests on multifibre strips. Grade 4–5 on both colour change and staining.</p>
         </article>
-        <article class="q-card reveal-up">
+        <article class="q-card q-card--cream reveal-up">
           <div class="ramp"><span></span><span></span><span></span><span></span><span></span></div>
           <h3>Colour measurement</h3><p>Spectrophotometer readings and light-box shade checks.</p>
         </article>
