@@ -4,6 +4,29 @@
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* Present the About animation without player chrome, pausing offscreen
+     and respecting reduced-motion preferences. */
+  const aboutVideo = $("#aboutVideo");
+  if (aboutVideo) {
+    const motion = matchMedia("(prefers-reduced-motion: reduce)");
+    let visible = false;
+    const syncPlayback = () => {
+      if (visible && !motion.matches && !document.hidden) {
+        aboutVideo.play().catch(() => { /* Keep the current frame if autoplay is blocked. */ });
+      } else aboutVideo.pause();
+    };
+    new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      syncPlayback();
+    }, { threshold: 0.25 }).observe(aboutVideo);
+    motion.addEventListener("change", syncPlayback);
+    document.addEventListener("visibilitychange", syncPlayback);
+    const header = $("#nav");
+    if (header) new ResizeObserver(() => {
+      document.documentElement.style.setProperty("--about-nav-height", header.offsetHeight + "px");
+    }).observe(header);
+  }
+
   /* ---------- Roll text effect ----------
      Hover: line rolls up, a tinted copy slides in from below.
      Leave: the copy stays up and fades back to the base colour (the trail),
@@ -201,12 +224,17 @@
       uniform float phase;
       uniform float aspect;
       void main() {
-        vec2 fit = vec2(min(aspect, 1.0), min(1.0 / aspect, 1.0));
-        vec2 p = (uv - 0.5) * fit / 1.05 + 0.5;
+        // Contain the complete artwork, with room for the animated displacement.
+        vec2 fit = vec2(max(aspect, 1.0), max(1.0 / aspect, 1.0));
+        vec2 p = (uv - 0.5) * fit / 0.92 + 0.5;
         // Gentle local refraction makes the liquid bend and droplets drift.
         p.x += 0.014 * sin(p.y * 9.0 + phase) + 0.006 * sin(p.y * 17.0 - phase * 2.0);
         p.y += 0.012 * sin(p.x * 8.0 - phase) + 0.005 * cos(p.x * 14.0 + phase * 2.0);
-        gl_FragColor = texture2D(artwork, p);
+        if (p.x < 0.0 || p.x > 1.0 || p.y < 0.0 || p.y > 1.0) {
+          gl_FragColor = vec4(1.0);
+        } else {
+          gl_FragColor = texture2D(artwork, p);
+        }
       }
     `);
     if (!vertex || !fragment) return;

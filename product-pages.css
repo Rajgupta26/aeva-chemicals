@@ -1,0 +1,109 @@
+/* Product pages share the homepage's Jost / IBM Plex Mono typography. */
+.p-label { font: 400 11px/1.6 "IBM Plex Mono", monospace; letter-spacing: .13em; text-transform: uppercase; color: #77634e; }
+.product-page { background: var(--paper); color: var(--ink); }
+.product-page .nav { background: #0b3027; }
+.product-page .nav__brand, .product-page .nav__links, .product-page .nav__burger { color: var(--cream); }
+.product-page .nav__links [aria-current] { text-decoration: underline; text-underline-offset: 6px; }
+.product-page main { padding-top: 85px; }
+.product-page a:focus-visible, .product-overview a:focus-visible { outline: 2px solid #a87a1c; outline-offset: 5px; }
+.p-skip { position: fixed; z-index: 100; left: 16px; top: -100px; padding: 14px 22px; background: white; color: var(--forest); }
+.p-skip:focus { top: 12px; }
+.p-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.p-breadcrumb { max-width: 1440px; margin: auto; padding: 26px var(--gutter); display: flex; gap: 16px; font-size: 13px; color: #6b716a; }
+.p-breadcrumb a:hover { color: var(--forest); }
+.p-hero { max-width: 1440px; margin: 0 auto; padding: 25px var(--gutter) 75px; display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(32px, 6vw, 90px); align-items: center; }
+.p-hero__copy, .p-visual { animation: productEnter .75s ease-out both; }
+.p-visual { animation-delay: .12s; }
+@keyframes productEnter { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+.p-hero h1 { margin-top: 20px; color: var(--forest); font-size: clamp(64px, 7vw, 108px); font-weight: 500; letter-spacing: -.05em; line-height: 1; }
+.p-category { margin-top: 12px; font-size: 18px; color: #6e756c; }
+.p-hero h2 { margin-top: 35px; font-size: clamp(30px, 3vw, 46px); line-height: 1.12; font-weight: 400; letter-spacing: -.025em; }
+.p-description { font-size: 18px; line-height: 1.65; margin-top: 23px; color: #60675e; max-width: 565px; }
+.p-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 22px; margin-top: 30px; }
+.p-actions .btn, .p-cta .btn { gap: 20px; }
+.p-text-link { font-size: 14px; border-bottom: 1px solid #8b9c8e; padding: 12px 0; }
+.p-text-link span { margin-left: 10px; }
+.p-form { font: 400 10px/1.6 "IBM Plex Mono", monospace; letter-spacing: .08em; border-top: 1px solid #d8dbd2; padding-top: 20px; margin-top: 30px; color: #7c8076; }
+.p-form strong { font-weight: 400; color: var(--forest); margin-left: 14px; }
+.p-visual { margin: 0; min-height: 540px; background: #ede7df; position: relative; display: flex; align-items: center; justify-content: center; padding: 85px 24px 120px; }
+.p-visual__label { position: absolute; top: 27px; left: 26px; right: 26px; display: flex; justify-content: space-between; font: 400 10px "IBM Plex Mono", monospace; letter-spacing: .1em; color: #6b6052; }
+.p-visual img { width: 200px; height: 300px; object-fit: contain; mix-blend-mode: multiply; }
+.p-visual figcaption { position: absolute; bottom: 26px; left: 26px; right: 26px; border-top: 1px solid #cfc5b8; padding-top: 14px; }
+.p-visual figcaption span { display: block; font-size: 28px; color: #514334; }
+.p-visual figcaption small { display: block; font: 400 10px/1.5 "IBM Plex Mono", monospace; color: #756b60; margin-top: 6px; }
+.p-benefits { padding: 55px var(--gutter); display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px; background: #f0eee6; }
+.p-index { font: 400 11px "IBM Plex Mono", monospace; color: #8b744a; }
+.p-benefits h3, .p-steps h3 { margin-top: 18px; margin-bottom: 12px; font-size: 23px; font-weight: 500; letter-spacing: -.015em; }
+.p-benefits p, .p-steps p { font-size: 16px; line-height: 1.7; color: #60675e; max-width: 430px; }
+.p-technical { display: grid; grid-template-columns: 1fr 1.3fr; gap: 65px; padding: 95px var(--gutter); scroll-margin-top: 90px; }
+.p-technical h2, .p-section-head h2, .p-documents h2 { font-size: clamp(34px, 4vw, 60px); line-height: 1.1; font-weight: 400; letter-spacing: -.025em; margin-top: 20px; }
+.p-technical > div > p:last-child { max-width: 320px; margin-top: 24px; color: #60675e; font-size: 17px; line-height: 1.6; }
+.p-technical dl { margin: 0; }
+.p-technical dl > div { display: grid; grid-template-columns: 1fr 1.3fr; gap: 28px; padding: 22px 0; border-bottom: 1px solid #d4d9cf; font-size: 16px; line-height: 1.5; }
+.p-technical dt { color: #72786d; }
+.p-technical dd { margin: 0; }
+.p-application { padding: 85px var(--gutter); background: #f0eee6; }
+.p-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 45px; margin-top: 48px; }
+.p-steps li { border-top: 1px solid #cbd0c4; padding-top: 23px; }
+.p-dosage { margin-top: 55px; display: grid; grid-template-columns: 1fr 1.6fr; gap: 30px; }
+.p-dosage h3 { font-size: 25px; font-weight: 400; }
+.p-dosage table { border-collapse: collapse; width: 100%; font-size: 16px; }
+.p-dosage th, .p-dosage td { text-align: left; padding: 16px 0; border-bottom: 1px solid #cbd0c4; font-weight: 400; }
+.p-dosage th { color: #666f61; padding-right: 24px; }
+.p-note { font-size: 14px; color: #666f61; line-height: 1.7; margin-top: 26px; max-width: 880px; }
+.p-documents { display: grid; grid-template-columns: 1fr 1fr; padding: 80px var(--gutter); gap: 50px; }
+.p-document-links a { display: flex; justify-content: space-between; gap: 20px; border-bottom: 1px solid #d2d6cb; padding: 22px 0; font-size: 18px; }
+.p-document-links a:hover { color: var(--forest-3); }
+.p-cta { background: var(--forest); color: var(--cream); text-align: center; padding: 85px 24px; }
+.p-cta .p-label { color: #d2bb83; }
+.p-cta h2 { margin-top: 22px; font-size: clamp(46px, 6vw, 80px); font-weight: 400; line-height: 1.1; letter-spacing: -.03em; }
+.p-cta > p:not(.p-label) { margin: 25px 0; font-size: 19px; line-height: 1.6; color: #c9d7ce; }
+.p-phone { display: block; width: fit-content; margin: 22px auto 0; font-size: 15px; }
+.p-other { padding: 42px var(--gutter); display: flex; align-items: center; justify-content: space-between; gap: 20px; background: #ebe5db; }
+.p-other > span:first-child { display: flex; flex-direction: column; gap: 8px; }
+.p-other small { font: 400 10px "IBM Plex Mono", monospace; color: #82705a; letter-spacing: .1em; }
+.p-other strong { font-size: 42px; font-weight: 400; color: var(--forest); }
+.p-other > span:last-child { font-size: 35px; }
+.p-other:hover { background: #e3ddcf; }
+.p-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 22px; padding: 30px var(--gutter); background: #13251f; color: #d3dbd4; font-size: 13px; }
+.product-overview { padding: 85px var(--gutter); background: var(--paper); color: var(--ink); scroll-margin-top: 72px; }
+.product-overview__head { margin-bottom: 42px; }
+.product-overview__head h2 { font-size: clamp(38px, 5vw, 68px); font-weight: 400; line-height: 1.1; letter-spacing: -.03em; margin: 20px 0; }
+.product-overview__head > p:last-child { font-size: 18px; color: #686e62; }
+.product-overview__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+.product-overview__card { border: 1px solid #dbd9cd; background: #f6f3ec; }
+.product-overview__art { position: relative; background: #ebe4da; height: 320px; padding: 40px 20px; display: flex; justify-content: center; }
+.product-overview__art > .p-label { position: absolute; top: 22px; left: 25px; font-size: 9px; }
+.product-overview__art img { width: 150px; height: 225px; object-fit: contain; mix-blend-mode: multiply; transition: transform .5s; }
+.product-overview__art small { position: absolute; bottom: 16px; right: 22px; color: #82725f; font: 400 9px "IBM Plex Mono", monospace; }
+.product-overview__card:hover img { transform: translateY(-5px); }
+.product-overview__copy { padding: 30px; }
+.product-overview__copy h3 { font-size: 50px; font-weight: 500; letter-spacing: -.03em; color: var(--forest); margin: 10px 0 15px; }
+.product-overview__copy > p:not(.p-label) { color: #626a5e; font-size: 16px; line-height: 1.65; max-width: 530px; }
+.product-overview__link { display: flex; justify-content: space-between; border-top: 1px solid #d5d9ce; padding-top: 18px; margin-top: 25px; font-size: 16px; color: var(--forest); }
+@media (max-width: 900px) {
+  .p-hero { gap: 30px; }
+  .p-visual { min-height: 500px; }
+  .p-benefits, .p-steps { gap: 25px; }
+  .p-technical { gap: 35px; }
+}
+@media (max-width: 700px) {
+  .p-hero, .p-benefits, .p-technical, .p-documents, .p-dosage, .p-steps, .product-overview__grid { grid-template-columns: 1fr; }
+  .p-hero { padding-top: 15px; padding-bottom: 45px; }
+  .p-hero h1 { font-size: 72px; }
+  .p-hero h2 { margin-top: 27px; }
+  .p-visual { min-height: 440px; }
+  .p-benefits, .p-technical, .p-application, .p-documents, .product-overview { padding-block: 55px; }
+  .p-benefits { gap: 35px; }
+  .p-technical dl > div { gap: 18px; }
+  .p-steps { gap: 30px; }
+  .p-form strong { display: block; margin: 7px 0 0; }
+  .p-hero .p-actions { align-items: flex-start; flex-direction: column; }
+  .product-overview__copy { padding: 25px; }
+  .p-other > span:first-child > span { max-width: 250px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .p-hero__copy, .p-visual { animation: none; }
+  .product-overview__art img { transition: none; }
+  .product-overview__card:hover img { transform: none; }
+}

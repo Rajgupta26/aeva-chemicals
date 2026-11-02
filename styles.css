@@ -241,6 +241,14 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .green p:not(.eyebrow) { font-size: clamp(17px, 1.35vw, 21px); line-height: 1.45; max-width: 640px; }
 .green .btn { align-self: flex-start; }
 
+/* Keep the presentation's text and all five slides visible without cropping. */
+#about { width: 100%; scroll-margin-top: var(--about-nav-height, 64px); background: #04172b; }
+.about-video { position: relative; width: 100%; min-width: 0; height: calc(100svh - var(--about-nav-height, 64px)); overflow: hidden; }
+.about-video video { position: absolute; inset: 0; display: block; width: 100%; height: 100%; min-height: 0; max-height: 100%; object-fit: fill; pointer-events: none; }
+@media (max-width: 860px) {
+  .about-video { height: auto; aspect-ratio: 16 / 9; }
+}
+
 /* CSS sky: blue gradient, sun flare and a translucent roof plane in perspective */
 .sky {
   background:
@@ -283,21 +291,21 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .tailor b { font-weight: 600; font-size: 18px; }
 .tailor span { font-size: 14px; opacity: .7; }
 .liquid-scene__toggle:focus-visible { outline: 2px solid #b08b38; outline-offset: 6px; }
-.liquid-scene { position: relative; min-height: 660px; isolation: isolate; overflow: hidden; background: #03271e; }
+.liquid-scene { position: relative; min-height: 660px; isolation: isolate; overflow: hidden; background: #fff; }
 .liquid-scene__image, .liquid-scene__canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.liquid-scene__image { object-position: center; }
+.liquid-scene__image { object-fit: contain; object-position: center; padding: 4%; }
 .liquid-scene__canvas { opacity: 0; transition: opacity .6s; }
 .liquid-scene.is-ready .liquid-scene__canvas { opacity: 1; }
-.liquid-scene::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(0, 26, 19, .35), transparent 24%, transparent 65%, rgba(0, 20, 15, .85)); }
-.liquid-scene__top, .liquid-scene__bottom { position: absolute; z-index: 1; left: clamp(24px, 3.4vw, 56px); right: clamp(24px, 3.4vw, 56px); display: flex; align-items: center; justify-content: space-between; color: #e8ede2; }
+.liquid-scene::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(255, 255, 255, .45), transparent 24%, transparent 65%, rgba(255, 255, 255, .92)); }
+.liquid-scene__top, .liquid-scene__bottom { position: absolute; z-index: 1; left: clamp(24px, 3.4vw, 56px); right: clamp(24px, 3.4vw, 56px); display: flex; align-items: center; justify-content: space-between; color: var(--forest); }
 .liquid-scene__top { top: 30px; font: 400 10px/1.5 "IBM Plex Mono", monospace; letter-spacing: .19em; }
-.liquid-scene__symbol { color: var(--gold); font-size: 30px; line-height: 1; }
+.liquid-scene__symbol { color: #957020; font-size: 30px; line-height: 1; }
 .liquid-scene__bottom { bottom: 34px; align-items: flex-end; }
 .liquid-scene__bottom p { font-size: clamp(32px, 3.2vw, 48px); letter-spacing: -.025em; line-height: 1.1; font-weight: 400; }
-.liquid-scene__bottom p span { color: #cfb66e; }
-.liquid-scene__toggle { width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid rgba(232, 237, 226, .4); border-radius: 50%; background: rgba(0, 26, 19, .3); transition: background .2s, border-color .2s; }
+.liquid-scene__bottom p span { color: #957020; }
+.liquid-scene__toggle { width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid rgba(11, 70, 54, .4); border-radius: 50%; background: rgba(255, 255, 255, .8); transition: background .2s, border-color .2s; }
 .liquid-scene__toggle[hidden] { display: none; }
-.liquid-scene__toggle:hover { background: rgba(232, 237, 226, .15); border-color: #e8ede2; }
+.liquid-scene__toggle:hover { background: #eaf3ed; border-color: var(--forest); }
 .liquid-scene__play { display: none; }
 .liquid-scene__toggle[aria-pressed="true"] .liquid-scene__pause { display: none; }
 .liquid-scene__toggle[aria-pressed="true"] .liquid-scene__play { display: block; }

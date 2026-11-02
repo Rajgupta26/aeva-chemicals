@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="product-pages.css" />
 </head>
 <body>
 
@@ -26,7 +27,7 @@
     </a>
     <nav class="nav__links" aria-label="Primary">
       <a class="roll" href="#about">About</a>
-      <a class="roll" href="#capabilities">Products</a>
+      <a class="roll" href="#products">Products</a>
       <a class="roll" href="#quality">Quality</a>
       <a class="roll" href="#reach">Reach</a>
     </nav>
@@ -53,28 +54,20 @@
         <p class="hero__lede reveal-up">Specialists in soaping chemistry. Our polymer wash-off technology lifts loose reactive dye off cotton and holds it away, so shades stay bright and whites stay white.</p>
         <div class="hero__ctas reveal-up">
           <a href="#contact" class="btn btn--light"><span class="roll">Get a trial sample</span></a>
-          <a href="#capabilities" class="btn btn--ghost"><span class="roll">Explore products</span></a>
+          <a href="#products" class="btn btn--ghost"><span class="roll">Explore products</span></a>
         </div>
       </div>
 
       <a href="#about" class="hero__scroll" aria-label="Scroll down"><span></span></a>
     </section>
 
-    <!-- ============ SPLIT: SKY / GREEN (screenshot 1 style) ============ -->
-    <section class="split-panel" id="about">
-      <div class="split-panel__visual sky">
-        <div class="sky__sun"></div>
-        <div class="sky__haze"></div>
-        <div class="sky__roof" aria-hidden="true">
-          <div class="sky__roof-plane"></div>
-        </div>
-        <div class="grain"></div>
-      </div>
-      <div class="split-panel__text green">
-        <p class="eyebrow">Why Aeva</p>
-        <h2 class="display reveal-words">Proven protection.</h2>
-        <p class="reveal-up">We put all our chemistry into a few products, so each one works harder in your bath. Formulated in our own laboratory, made batch by batch in our own plant near Mumbai, and tested before it ever reaches your dyehouse.</p>
-        <a href="#contact" class="btn btn--outline reveal-up"><span class="roll">Contact us</span></a>
+    <!-- ============ ABOUT: FULL-WIDTH COMPANY VIDEO ============ -->
+    <section id="about" aria-label="About Aeva Chemicals">
+      <div class="split-panel__visual about-video">
+        <video id="aboutVideo" muted loop playsinline disablepictureinpicture disableremoteplayback preload="metadata" aria-label="Aeva Chemicals company overview: introduction, products, capabilities and contact details">
+          <source src="assets/aeva-company-overview.mp4" type="video/mp4">
+          Your browser does not support this video. <a href="assets/aeva-company-overview.mp4">Download the company overview</a>.
+        </video>
       </div>
     </section>
 
@@ -96,15 +89,19 @@
     <section class="capabilities" id="capabilities">
       <p class="eyebrow eyebrow--dim">What we make for your mill</p>
       <ul class="cap-list" id="capList">
-        <li><a class="roll roll--big" href="#contact" data-note="AeSop · 01">Low-temperature soaping agents</a></li>
-        <li><a class="roll roll--big" href="#contact" data-note="AeSop · 02">Anti-backstaining systems</a></li>
-        <li><a class="roll roll--big" href="#contact" data-note="AeKomala · 03">Cationic softeners</a></li>
+        <li><a class="roll roll--big" href="aesop.html" data-note="AeSop · 01">Low-temperature soaping agents</a></li>
+        <li><a class="roll roll--big" href="aesop.html" data-note="AeSop · 02">Anti-backstaining systems</a></li>
+        <li><a class="roll roll--big" href="aekomala.html" data-note="AeKomala · 03">Cationic softeners</a></li>
         <li><a class="roll roll--big" href="#quality" data-note="Process · 04">Wash-off efficiency programmes</a></li>
         <li><a class="roll roll--big" href="#quality" data-note="Lab · 05">Batch QC &amp; certificates of analysis</a></li>
         <li><a class="roll roll--big" href="#contact" data-note="Custom · 06">Tailor-made formulations</a></li>
       </ul>
       <div class="cap-cursor" id="capCursor" aria-hidden="true"></div>
     </section>
+
+    <section class="product-overview" id="products" aria-labelledby="products-heading">
+      <div class="product-overview__head"><p class="p-label">OUR PRODUCT RANGE</p><h2 id="products-heading">Focused chemistry.<br>From wash-off to finish.</h2><p>Two specialist products. Each with a clear role in your process.</p></div>
+      <div class="product-overview__grid"><a class="product-overview__card" href="aesop.html"><div class="product-overview__art"><span class="p-label">Concentrated liquid</span><img src="assets/products/aesop-stock.jpg" alt="Illustrative AeSop stock packaging visual" width="134" height="200" loading="lazy"><small>Illustrative stock imagery</small></div><div class="product-overview__copy"><p class="p-label">Low-temperature soaping agent</p><h3>AeSop</h3><p>Polymer wash-off chemistry for reactive-dyed cotton. AeSop removes loose dye and helps keep it from redepositing, so shades stay bright and white grounds stay clean.</p><span class="product-overview__link">View product <span aria-hidden="true">↗</span></span></div></a><a class="product-overview__card" href="aekomala.html"><div class="product-overview__art"><span class="p-label">Pale-yellow paste</span><img src="assets/products/aekomala-stock.jpg" alt="Illustrative AeKomala stock packaging visual" width="134" height="200" loading="lazy"><small>Illustrative stock imagery</small></div><div class="product-overview__copy"><p class="p-label">Cationic textile softener</p><h3>AeKomala</h3><p>Fatty amidoamine softening chemistry for textile finishing. AeKomala delivers a silky, smooth handle while helping maintain whiteness, absorbency and reactive shades.</p><span class="product-overview__link">View product <span aria-hidden="true">↗</span></span></div></a></div></section>
 
     <!-- ============ TAILORED FORMULATION ============ -->
     <section class="formulation" id="tailor" aria-labelledby="tailor-title">
@@ -120,7 +117,7 @@
         </div>
       </div>
       <div class="liquid-scene" id="liquidScene">
-        <img class="liquid-scene__image" src="assets/formulation-liquid.webp" alt="Abstract teal liquid swirl with golden droplets, illustrating chemical formulation" width="1254" height="1254" loading="lazy" decoding="async">
+        <img class="liquid-scene__image" src="assets/formulation-liquid-white.webp" alt="Abstract teal liquid swirl with golden droplets, illustrating chemical formulation" width="1254" height="1254" loading="lazy" decoding="async">
         <canvas class="liquid-scene__canvas" aria-hidden="true"></canvas>
         <div class="liquid-scene__top" aria-hidden="true"><span>AEVA CHEMICALS</span><span class="liquid-scene__symbol">✳</span></div>
         <div class="liquid-scene__bottom">
@@ -211,7 +208,7 @@
       <div class="footer__col">
         <ul class="footer__main">
           <li><a class="roll" href="#about">About</a></li>
-          <li><a class="roll" href="#capabilities">Products</a></li>
+          <li><a class="roll" href="#products">Products</a></li>
           <li><a class="roll" href="#quality">Quality</a></li>
           <li><a class="roll" href="#quality">Sustainability</a></li>
           <li><a class="roll" href="#contact">Contact</a></li>
@@ -228,9 +225,9 @@
       <div class="footer__col">
         <p class="footer__h">Products</p>
         <ul class="footer__sub">
-          <li><a class="roll" href="#contact">AeSop Soaping Agent</a></li>
+          <li><a class="roll" href="aesop.html">AeSop Soaping Agent</a></li>
           <li><a class="roll" href="#contact">Anti-Backstaining System</a></li>
-          <li><a class="roll" href="#contact">AeKomala Cationic Softener</a></li>
+          <li><a class="roll" href="aekomala.html">AeKomala Cationic Softener</a></li>
           <li><a class="roll" href="#contact">Tailor-made Formulations</a></li>
           <li><a class="roll" href="#quality">Technical Data Sheets</a></li>
           <li><a class="roll" href="#quality">Safety Data Sheets</a></li>
