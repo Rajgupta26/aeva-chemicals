@@ -200,20 +200,8 @@
     const wrap = bigWord.parentElement;
     bigWord.style.fontSize = "100px";
     const w = bigWord.scrollWidth;
-    bigWord.style.fontSize = (100 * wrap.clientWidth / w) * 0.995 + "px";
+    bigWord.style.fontSize = (100 * wrap.clientWidth / w) * 0.9 + "px"; // leave side breathing room
   }
   (document.fonts ? document.fonts.ready : Promise.resolve()).then(fitWord);
 
-  /* ---------- Newsletter (front-end only) ---------- */
-  const form = $("#newsForm");
-  const msg = $("#newsMsg");
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const email = form.email.value.trim();
-    msg.classList.remove("is-err");
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { msg.textContent = "Please enter a valid email address."; msg.classList.add("is-err"); return; }
-    if (!form.agree.checked) { msg.textContent = "Please agree to the privacy policy."; msg.classList.add("is-err"); return; }
-    msg.textContent = "Thank you — you're on the list.";
-    form.reset();
-  });
 })();
