@@ -356,6 +356,7 @@ body:not(.product-page) .nav.is-scrolled:not(.is-open) {
 
 /* Original left panel with the liquid visual retained on the right. */
 .formulation { display: grid; grid-template-columns: 1fr 1fr; min-height: 100svh; scroll-margin-top: 72px; }
+.formulation .split-panel__text { padding-bottom: clamp(56px, 6vw, 88px); }
 .formulation .tailor { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; max-width: 640px; }
 .tailor > div { background: var(--tint); border: 1px solid var(--line); border-radius: 18px; padding: 18px; display: flex; flex-direction: column; gap: 4px; }
 .tailor i { width: 22px; height: 22px; border-radius: 6px; margin-bottom: 8px; }
@@ -399,7 +400,8 @@ body:not(.product-page) .nav.is-scrolled:not(.is-open) {
   background: var(--cream); color: var(--ink);
   padding: clamp(76px, 10vw, 130px) var(--gutter);
   text-align: center; position: relative; overflow: hidden;
-  min-height: 100svh; display: flex; flex-direction: column; justify-content: center;
+  display: flex; flex-direction: column; justify-content: center;
+  padding-top: clamp(40px, 5vw, 72px); /* sits close under Tailor-made */
 }
 .capabilities .eyebrow { margin-bottom: clamp(28px, 3vw, 48px); font-size: 13px; }
 .cap-list li { line-height: 1.06; }
@@ -441,6 +443,7 @@ body:not(.product-page) .nav.is-scrolled:not(.is-open) {
 .hwf-root {
   --hwf-bg: var(--cream); --hwf-ink: var(--ink);
   position: relative; width: 100%; padding-bottom: calc(14vw + 90px); overflow: hidden; isolation: isolate;
+  border-top: 1px solid var(--line); /* hairline separating the footer from the page */
   background: var(--hwf-bg); color: var(--hwf-ink);
 }
 .hwf-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; max-width: none; }
