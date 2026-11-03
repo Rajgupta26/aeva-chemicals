@@ -18,9 +18,8 @@
 .p-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 .p-breadcrumb { max-width: 1440px; margin: auto; padding: 26px var(--gutter); display: flex; gap: 16px; font-size: 13px; color: var(--ink-mute); }
 .p-breadcrumb a:hover { color: var(--forest); }
-.p-hero { max-width: 1440px; margin: 0 auto; padding: 25px var(--gutter) 75px; display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(32px, 6vw, 90px); align-items: center; }
-.p-hero__copy, .p-visual { animation: productEnter .75s ease-out both; }
-.p-visual { animation-delay: .12s; }
+.p-hero { max-width: 1440px; margin: 0 auto; padding: 25px var(--gutter) 75px; display: grid; grid-template-columns: 1fr; gap: clamp(32px, 6vw, 90px); align-items: center; }
+.p-hero__copy { animation: productEnter .75s ease-out both; }
 @keyframes productEnter { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 .p-hero h1 { margin-top: 20px; color: var(--forest); font-size: clamp(64px, 7vw, 108px); font-weight: 500; letter-spacing: -.05em; line-height: 1; }
 .p-category { margin-top: 12px; font-size: 18px; color: var(--ink-mute); }
@@ -32,12 +31,6 @@
 .p-text-link span { margin-left: 10px; }
 .p-form { font: 400 10px/1.6 "IBM Plex Mono", monospace; letter-spacing: .08em; border-top: 1px solid var(--line); padding-top: 20px; margin-top: 30px; color: var(--ink-mute); }
 .p-form strong { font-weight: 400; color: var(--forest); margin-left: 14px; }
-.p-visual { margin: 0; min-height: 540px; background: var(--tint); position: relative; display: flex; align-items: center; justify-content: center; padding: 85px 24px 120px; }
-.p-visual__label { position: absolute; top: 27px; left: 26px; right: 26px; display: flex; justify-content: space-between; font: 400 10px "IBM Plex Mono", monospace; letter-spacing: .1em; color: var(--ink-mute); }
-.p-visual img { width: 200px; height: 300px; object-fit: contain; mix-blend-mode: multiply; }
-.p-visual figcaption { position: absolute; bottom: 26px; left: 26px; right: 26px; border-top: 1px solid var(--line); padding-top: 14px; }
-.p-visual figcaption span { display: block; font-size: 28px; color: var(--ink); }
-.p-visual figcaption small { display: block; font: 400 10px/1.5 "IBM Plex Mono", monospace; color: var(--ink-mute); margin-top: 6px; }
 .p-benefits { padding: 55px var(--gutter); display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px; background: var(--tint); }
 .p-index { font: 400 11px "IBM Plex Mono", monospace; color: var(--leaf); }
 .p-benefits h3, .p-steps h3 { margin-top: 18px; margin-bottom: 12px; font-size: 23px; font-weight: 500; letter-spacing: -.015em; }
@@ -68,18 +61,12 @@
 .product-overview__head > p:last-child { font-size: 18px; color: var(--ink-soft); }
 .product-overview__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
 .product-overview__card { border: 1px solid var(--line); background: var(--cream); }
-.product-overview__art { position: relative; background: var(--tint); height: 320px; padding: 40px 20px; display: flex; justify-content: center; }
-.product-overview__art > .p-label { position: absolute; top: 22px; left: 25px; font-size: 9px; }
-.product-overview__art img { width: 150px; height: 225px; object-fit: contain; mix-blend-mode: multiply; transition: transform .5s; }
-.product-overview__art small { position: absolute; bottom: 16px; right: 22px; color: var(--ink-mute); font: 400 9px "IBM Plex Mono", monospace; }
-.product-overview__card:hover img { transform: translateY(-5px); }
 .product-overview__copy { padding: 30px; }
 .product-overview__copy h3 { font-size: 50px; font-weight: 500; letter-spacing: -.03em; color: var(--forest); margin: 10px 0 15px; }
 .product-overview__copy > p:not(.p-label) { color: var(--ink-soft); font-size: 16px; line-height: 1.65; max-width: 530px; }
 .product-overview__link { display: flex; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 18px; margin-top: 25px; font-size: 16px; color: var(--forest); }
 @media (max-width: 900px) {
   .p-hero { gap: 30px; }
-  .p-visual { min-height: 500px; }
   .p-benefits, .p-steps { gap: 25px; }
   .p-technical { gap: 35px; }
 }
@@ -88,7 +75,6 @@
   .p-hero { padding-top: 15px; padding-bottom: 45px; }
   .p-hero h1 { font-size: 72px; }
   .p-hero h2 { margin-top: 27px; }
-  .p-visual { min-height: 440px; }
   .p-benefits, .p-technical, .p-application, .p-documents, .product-overview { padding-block: 55px; }
   .p-benefits { gap: 35px; }
   .p-technical dl > div { gap: 18px; }
@@ -98,7 +84,12 @@
   .product-overview__copy { padding: 25px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .p-hero__copy, .p-visual { animation: none; }
-  .product-overview__art img { transition: none; }
-  .product-overview__card:hover img { transform: none; }
+  .p-hero__copy { animation: none; }
 }
+
+/* Product information leads; there are no product or packaging photographs. */
+.p-hero__copy { max-width: 1000px; }
+.p-description { max-width: 760px; }
+.product-overview__card { display: flex; border-top: 3px solid var(--forest); }
+.product-overview__copy { display: flex; flex-direction: column; width: 100%; }
+.product-overview__copy > p:not(.p-label) { flex: 1; }

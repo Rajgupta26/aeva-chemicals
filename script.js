@@ -348,6 +348,11 @@
      Leave: the copy stays up and fades back to the base colour (the trail),
      then the line silently resets once both layers look identical. */
   $$(".roll").forEach((el) => {
+    // Navbar labels stay still inside the dock's hover zoom and lift.
+    if (el.closest(".nav__links, .nav__cta")) {
+      el.classList.remove("roll");
+      return;
+    }
     const text = el.textContent.trim();
     el.innerHTML = `<span class="roll__in"><span>${text}</span><span aria-hidden="true">${text}</span></span>`;
     const host = el.closest(".btn") || el;
@@ -494,6 +499,87 @@
     e.currentTarget.setAttribute("aria-expanded", open);
   });
   $$(".nav__links a").forEach((a) => a.addEventListener("click", () => nav.classList.remove("is-open")));
+
+  /* Dock magnification: transform links without shifting the header layout. */
+  (() => {
+    const desktop = matchMedia("(min-width: 861px)");
+    const motionPreference = matchMedia("(prefers-reduced-motion: reduce)");
+    const finePointer = matchMedia("(hover: hover) and (pointer: fine)");
+    const links = $$(".nav__links a, .nav__cta", nav);
+    const items = links.map(el => ({ el, value: 0, velocity: 0, target: 0 }));
+    let pointerX = null;
+    let focused = null;
+    let frame = 0;
+    let lastTime = 0;
+    const enabled = () => desktop.matches && !motionPreference.matches;
+
+    function animate(time) {
+      const dt = Math.min((time - lastTime) / 1000 || 1 / 60, .032);
+      lastTime = time;
+      let settling = false;
+      items.forEach(item => {
+        // Small integration steps keep the spring stable on slower frames.
+        const steps = Math.ceil(dt / .008);
+        const step = dt / steps;
+        for (let i = 0; i < steps; i++) {
+          item.velocity += ((item.target - item.value) * 260 - item.velocity * 24) * step;
+          item.value += item.velocity * step;
+        }
+        if (Math.abs(item.target - item.value) < .001 && Math.abs(item.velocity) < .001) {
+          item.value = item.target;
+          item.velocity = 0;
+        } else settling = true;
+        item.el.style.setProperty("--nav-dock", item.value.toFixed(4));
+      });
+      frame = settling ? requestAnimationFrame(animate) : 0;
+    }
+
+    function updateTargets() {
+      if (!enabled()) {
+        cancelAnimationFrame(frame);
+        frame = 0;
+        pointerX = null;
+        items.forEach(item => {
+          item.value = item.velocity = item.target = 0;
+          item.el.style.removeProperty("--nav-dock");
+        });
+        return;
+      }
+      const centers = links.map(el => {
+        const rect = el.getBoundingClientRect();
+        return rect.left + rect.width / 2;
+      });
+      const origin = pointerX ?? centers[links.indexOf(focused)];
+      items.forEach((item, i) => {
+        const proximity = Number.isFinite(origin) ? Math.max(0, 1 - Math.abs(origin - centers[i]) / 140) : 0;
+        item.target = proximity * proximity * (3 - 2 * proximity);
+      });
+      if (!frame) {
+        lastTime = performance.now();
+        frame = requestAnimationFrame(animate);
+      }
+    }
+
+    nav.addEventListener("pointermove", event => {
+      if (!enabled() || !finePointer.matches || event.pointerType === "touch") return;
+      // Keep motion local to the navigation controls, away from the logo.
+      const first = links[0].getBoundingClientRect();
+      const last = links[links.length - 1].getBoundingClientRect();
+      pointerX = event.clientX >= first.left - 24 && event.clientX <= last.right + 24 ? event.clientX : null;
+      updateTargets();
+    }, { passive: true });
+    nav.addEventListener("pointerleave", () => { pointerX = null; updateTargets(); });
+    nav.addEventListener("focusin", event => {
+      focused = links.includes(event.target) && event.target.matches(":focus-visible") ? event.target : null;
+      updateTargets();
+    });
+    nav.addEventListener("focusout", () => { focused = null; updateTargets(); });
+    addEventListener("blur", () => { pointerX = null; focused = null; updateTargets(); });
+    addEventListener("resize", () => { pointerX = null; updateTargets(); }, { passive: true });
+    desktop.addEventListener("change", updateTargets);
+    motionPreference.addEventListener("change", updateTargets);
+    finePointer.addEventListener("change", () => { pointerX = null; updateTargets(); });
+  })();
 
   /* ---------- Capabilities cursor label ---------- */
   const cursor = $("#capCursor");
