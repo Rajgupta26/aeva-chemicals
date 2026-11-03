@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="product-pages.css" />
+  <link rel="stylesheet" href="styles.css?v=20261103z" />
+  <link rel="stylesheet" href="product-pages.css?v=20261103c" />
 </head>
 <body>
 
@@ -17,21 +17,22 @@
   <header class="nav" id="nav">
     <a href="#top" class="nav__brand" aria-label="Aeva Chemicals home">
       <svg class="logo-mark" viewBox="0 0 48 48" aria-hidden="true">
-        <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">
-          <path d="M24 5 L41 15 L38 40 L10 40 L7 15 Z" opacity=".55" />
-          <path d="M24 5 L12 40 M24 5 L36 40 M16.5 28 L31.5 28" />
+        <g fill="none" stroke="currentColor" stroke-linecap="round">
+          <path d="M23.7 2.8 L1.7 18.8 L10 45 L37.3 45 L46 18.8 Z" stroke-width="1.1" stroke-linejoin="round" />
+          <path d="M23.7 4 L10.6 45 M23.7 4 L36.8 45" stroke-width="3.8" />
+          <path d="M15.2 32.3 L32.2 32.3" stroke-width="3" stroke-linecap="butt" />
         </g>
-        <g fill="currentColor"><circle cx="24" cy="5" r="3" fill="#E8B84A"/><circle cx="41" cy="15" r="2"/><circle cx="7" cy="15" r="2"/><circle cx="38" cy="40" r="2"/><circle cx="10" cy="40" r="2"/><circle cx="16.5" cy="28" r="2"/><circle cx="31.5" cy="28" r="2"/></g>
+        <g fill="currentColor"><circle cx="1.9" cy="18.8" r="1.6"/><circle cx="45.8" cy="18.8" r="1.6"/><circle cx="10" cy="45" r="1.9"/><circle cx="37.3" cy="45" r="1.9"/></g>
+        <circle cx="23.7" cy="2.9" r="2.8" fill="#C08E2E"/>
       </svg>
-      <span class="nav__word">AEVA <em>CHEMICALS</em></span>
+      <span class="nav__word"><b>AEVA</b> <em>CHEMICALS</em></span>
     </a>
     <nav class="nav__links" aria-label="Primary">
       <a class="roll" href="#about">About</a>
       <a class="roll" href="#products">Products</a>
-      <a class="roll" href="#quality">Quality</a>
       <a class="roll" href="#reach">Reach</a>
     </nav>
-    <a href="#contact" class="btn btn--pill nav__cta"><span class="roll">Request a trial</span></a>
+    <a href="https://wa.me/919820528708?text=Hi%20Aeva%2C%20I%27d%20like%20an%20AeSop%20trial%20sample." target="_blank" rel="noopener" class="btn btn--pill nav__cta"><span class="roll">Request a trial</span></a>
     <button class="nav__burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
   </header>
 
@@ -39,69 +40,25 @@
 
     <!-- ============ HERO (particle video) ============ -->
     <section class="hero">
-      <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg">
-        <source src="assets/hero-particles.mp4" type="video/mp4" />
+      <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="assets/hero-spiral-poster.jpg?v=hd1">
+        <source src="assets/hero-spiral-hd.mp4?v=hd1" type="video/mp4" />
       </video>
       <div class="hero__shade"></div>
       <div class="grain"></div>
 
       <div class="hero__inner">
-        <p class="eyebrow hero__eyebrow reveal-up">Textile auxiliaries · Reactive dyeing · Mumbai</p>
         <h1 class="hero__title">
           <span class="split">Clean shades</span>
           <span class="split">start <span class="hero__rotator" aria-live="polite"><span class="hero__rot-track"><span>here.</span><span>at 70°C.</span><span>with Aeva.</span><span>here.</span></span></span></span>
         </h1>
-        <p class="hero__lede reveal-up">Specialists in soaping chemistry. Our polymer wash-off technology lifts loose reactive dye off cotton and holds it away, so shades stay bright and whites stay white.</p>
         <div class="hero__ctas reveal-up">
-          <a href="#contact" class="btn btn--light"><span class="roll">Get a trial sample</span></a>
+          <a href="https://wa.me/919820528708?text=Hi%20Aeva%2C%20I%27d%20like%20an%20AeSop%20trial%20sample." target="_blank" rel="noopener" class="btn btn--light"><span class="roll">Get a trial sample</span></a>
           <a href="#products" class="btn btn--ghost"><span class="roll">Explore products</span></a>
         </div>
       </div>
 
       <a href="#about" class="hero__scroll" aria-label="Scroll down"><span></span></a>
     </section>
-
-    <!-- ============ ABOUT: FULL-WIDTH COMPANY VIDEO ============ -->
-    <section id="about" aria-label="About Aeva Chemicals">
-      <div class="split-panel__visual about-video">
-        <video id="aboutVideo" muted loop playsinline disablepictureinpicture disableremoteplayback preload="metadata" aria-label="Aeva Chemicals company overview: introduction, products, capabilities and contact details">
-          <source src="assets/aeva-company-overview.mp4" type="video/mp4">
-          Your browser does not support this video. <a href="assets/aeva-company-overview.mp4">Download the company overview</a>.
-        </video>
-      </div>
-    </section>
-
-    <!-- ============ STATS ============ -->
-    <section class="stats" id="stats">
-      <div class="stats__head">
-        <p class="eyebrow eyebrow--gold">Fewer products</p>
-        <h2 class="display reveal-words">Deeper <span class="grad-text">mastery.</span></h2>
-      </div>
-      <div class="stats__grid">
-        <article class="stat reveal-up"><p class="eyebrow">Capacity</p><b><span data-count="20">0</span>+ t</b><span>made every day at our plant near Mumbai</span></article>
-        <article class="stat stat--cream reveal-up"><p class="eyebrow eyebrow--gold">Quality</p><b><span data-count="100">0</span>%</b><span>of batches lab-tested, each with a certificate of analysis</span></article>
-        <article class="stat stat--grad reveal-up"><p class="eyebrow">Exports</p><b><span data-count="5">0</span></b><span>countries, plus India's main textile hubs</span></article>
-        <article class="stat reveal-up"><p class="eyebrow">Across India</p><b><span data-count="11">0</span></b><span>textile hubs served, from Tirupur to Panipat</span></article>
-      </div>
-    </section>
-
-    <!-- ============ HOVER LIST (screen-recording text effect) ============ -->
-    <section class="capabilities" id="capabilities">
-      <p class="eyebrow eyebrow--dim">What we make for your mill</p>
-      <ul class="cap-list" id="capList">
-        <li><a class="roll roll--big" href="aesop.html" data-note="AeSop · 01">Low-temperature soaping agents</a></li>
-        <li><a class="roll roll--big" href="aesop.html" data-note="AeSop · 02">Anti-backstaining systems</a></li>
-        <li><a class="roll roll--big" href="aekomala.html" data-note="AeKomala · 03">Cationic softeners</a></li>
-        <li><a class="roll roll--big" href="#quality" data-note="Process · 04">Wash-off efficiency programmes</a></li>
-        <li><a class="roll roll--big" href="#quality" data-note="Lab · 05">Batch QC &amp; certificates of analysis</a></li>
-        <li><a class="roll roll--big" href="#contact" data-note="Custom · 06">Tailor-made formulations</a></li>
-      </ul>
-      <div class="cap-cursor" id="capCursor" aria-hidden="true"></div>
-    </section>
-
-    <section class="product-overview" id="products" aria-labelledby="products-heading">
-      <div class="product-overview__head"><p class="p-label">OUR PRODUCT RANGE</p><h2 id="products-heading">Focused chemistry.<br>From wash-off to finish.</h2><p>Two specialist products. Each with a clear role in your process.</p></div>
-      <div class="product-overview__grid"><a class="product-overview__card" href="aesop.html"><div class="product-overview__art"><span class="p-label">Concentrated liquid</span><img src="assets/products/aesop-stock.jpg" alt="Illustrative AeSop stock packaging visual" width="134" height="200" loading="lazy"><small>Illustrative stock imagery</small></div><div class="product-overview__copy"><p class="p-label">Low-temperature soaping agent</p><h3>AeSop</h3><p>Polymer wash-off chemistry for reactive-dyed cotton. AeSop removes loose dye and helps keep it from redepositing, so shades stay bright and white grounds stay clean.</p><span class="product-overview__link">View product <span aria-hidden="true">↗</span></span></div></a><a class="product-overview__card" href="aekomala.html"><div class="product-overview__art"><span class="p-label">Pale-yellow paste</span><img src="assets/products/aekomala-stock.jpg" alt="Illustrative AeKomala stock packaging visual" width="134" height="200" loading="lazy"><small>Illustrative stock imagery</small></div><div class="product-overview__copy"><p class="p-label">Cationic textile softener</p><h3>AeKomala</h3><p>Fatty amidoamine softening chemistry for textile finishing. AeKomala delivers a silky, smooth handle while helping maintain whiteness, absorbency and reactive shades.</p><span class="product-overview__link">View product <span aria-hidden="true">↗</span></span></div></a></div></section>
 
     <!-- ============ TAILORED FORMULATION ============ -->
     <section class="formulation" id="tailor" aria-labelledby="tailor-title">
@@ -110,10 +67,10 @@
         <h2 class="display reveal-words" id="tailor-title">Tailor-made for your mill.</h2>
         <p class="reveal-up">Every dyehouse is different. We tune each formulation to your water hardness, your machines, your temperature and your budget — then send a trial sample with a recipe for your machine.</p>
         <div class="tailor reveal-up">
-          <div><i style="background:#0F8A9E"></i><b>Water hardness</b><span>Tuned to your water</span></div>
-          <div><i style="background:#1F2A6B"></i><b>Machine type</b><span>Jet, soft-flow, winch</span></div>
-          <div><i style="background:#E8A71A"></i><b>Low temp</b><span>60–70 °C grade</span></div>
-          <div><i style="background:#0B4636"></i><b>Strength &amp; price</b><span>For your budget</span></div>
+          <div><i style="background:var(--leaf)"></i><b>Water hardness</b><span>Tuned to your water</span></div>
+          <div><i style="background:var(--emerald)"></i><b>Machine type</b><span>Jet, soft-flow, winch</span></div>
+          <div><i style="background:var(--gold)"></i><b>Low temp</b><span>60–70 °C grade</span></div>
+          <div><i style="background:var(--ink)"></i><b>Strength &amp; price</b><span>For your budget</span></div>
         </div>
       </div>
       <div class="liquid-scene" id="liquidScene">
@@ -127,6 +84,68 @@
       </div>
     </section>
 
+    <!-- ============ HOVER LIST (screen-recording text effect) ============ -->
+    <section class="capabilities" id="capabilities">
+      <p class="eyebrow eyebrow--dim">What we make for your mill</p>
+      <ul class="cap-list" id="capList">
+        <li><a class="roll roll--big" href="aesop.html" data-note="AeSop · 01">Low-temperature soaping agents</a></li>
+        <li><a class="roll roll--big" href="aesop.html" data-note="AeSop · 02">Anti-backstaining systems</a></li>
+        <li><a class="roll roll--big" href="aekomala.html" data-note="AeKomala · 03">Cationic softeners</a></li>
+        <li><a class="roll roll--big" href="aesop.html" data-note="Process · 04">Wash-off efficiency programmes</a></li>
+        <li><a class="roll roll--big" href="aesop.html" data-note="Lab · 05">Batch QC &amp; certificates of analysis</a></li>
+        <li><a class="roll roll--big" href="#tailor" data-note="Custom · 06">Tailor-made formulations</a></li>
+      </ul>
+      <div class="cap-cursor" id="capCursor" aria-hidden="true"></div>
+    </section>
+
+    <section class="product-overview" id="products" aria-labelledby="products-heading">
+      <div class="product-overview__head"><p class="p-label">OUR PRODUCT RANGE</p><h2 id="products-heading">Focused chemistry.<br>From wash-off to finish.</h2><p>Two specialist products. Each with a clear role in your process.</p></div>
+      <div class="product-overview__grid"><a class="product-overview__card" href="aesop.html"><div class="product-overview__art"><span class="p-label">Concentrated liquid</span><img src="assets/products/aesop-stock.jpg" alt="Illustrative AeSop stock packaging visual" width="134" height="200" loading="lazy"><small>Illustrative stock imagery</small></div><div class="product-overview__copy"><p class="p-label">Low-temperature soaping agent</p><h3>AeSop</h3><p>Polymer wash-off chemistry for reactive-dyed cotton. AeSop removes loose dye and helps keep it from redepositing, so shades stay bright and white grounds stay clean.</p><span class="product-overview__link">View product <span aria-hidden="true">↗</span></span></div></a><a class="product-overview__card" href="aekomala.html"><div class="product-overview__art"><span class="p-label">Pale-yellow paste</span><img src="assets/products/aekomala-stock.jpg" alt="Illustrative AeKomala stock packaging visual" width="134" height="200" loading="lazy"><small>Illustrative stock imagery</small></div><div class="product-overview__copy"><p class="p-label">Cationic textile softener</p><h3>AeKomala</h3><p>Fatty amidoamine softening chemistry for textile finishing. AeKomala delivers a silky, smooth handle while helping maintain whiteness, absorbency and reactive shades.</p><span class="product-overview__link">View product <span aria-hidden="true">↗</span></span></div></a></div></section>
+
+    <!-- ============ ABOUT: THE SOAPING BATH, UNDER THE LENS ============ -->
+    <section class="story" id="about" aria-labelledby="story-title">
+      <div class="story__pin">
+        <canvas class="story__canvas" aria-hidden="true"></canvas>
+        <div class="story__scale" aria-hidden="true"><i></i><span>1 mm</span></div>
+        <div class="story__card">
+          <h2 class="eyebrow story__eyebrow" id="story-title">About Aeva · Inside the soaping bath</h2>
+          <ol class="story__steps">
+            <li class="is-on">
+              <p class="story__stage">01 · After dyeing</p>
+              <h3>Loose dye clings to the cotton.</h3>
+              <p>Reactive dyeing never fixes every molecule. The rest sits on the fibre, ready to bleed in the first wash and stain the whites beside it.</p>
+            </li>
+            <li>
+              <p class="story__stage">02 · Soaping at 60–70 °C</p>
+              <h3>AeSop lifts it off.</h3>
+              <p>Our polymer wash-off chemistry pulls the loose dye away from the fibre at 60–70 °C, rather than in a near-boiling bath.</p>
+            </li>
+            <li>
+              <p class="story__stage">03 · In the liquor</p>
+              <h3>Then holds it there.</h3>
+              <p>The polymer keeps the dye suspended in the water, so it drains away instead of settling back on the cloth.</p>
+            </li>
+            <li>
+              <p class="story__stage">04 · Out of the bath</p>
+              <h3>Bright shades. Clean whites.</h3>
+              <p>That is what Aeva Chemicals is for: a Mumbai team making soaping and finishing chemistry for dyehouses in India and abroad.</p>
+            </li>
+          </ol>
+          <div class="story__foot">
+            <div class="story__progress" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            <button class="story__film" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M10 8.2v7.6l6-3.8z" fill="currentColor"/></svg>Watch our film</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <dialog class="film" aria-label="Aeva Chemicals company film">
+      <button class="film__close" type="button" aria-label="Close the company film">✕</button>
+      <video controls playsinline preload="none">
+        <source src="assets/aeva-company-overview.mp4" type="video/mp4">
+      </video>
+    </dialog>
+
     <!-- ============ REACH ============ -->
     <section class="reach" id="reach">
       <div class="section-head">
@@ -137,11 +156,11 @@
         <div class="reach__row">
           <header><span class="eyebrow eyebrow--gold">Export</span><b>5 countries</b></header>
           <ul class="hover-list">
-            <li><a class="roll roll--big roll--dark" href="#contact">Turkey</a></li>
-            <li><a class="roll roll--big roll--dark" href="#contact">Egypt</a></li>
-            <li><a class="roll roll--big roll--dark" href="#contact">Bangladesh</a></li>
-            <li><a class="roll roll--big roll--dark" href="#contact">Vietnam</a></li>
-            <li><a class="roll roll--big roll--dark" href="#contact">Sri Lanka</a></li>
+            <li><a class="roll roll--big roll--dark" href="#reach">Turkey</a></li>
+            <li><a class="roll roll--big roll--dark" href="#reach">Egypt</a></li>
+            <li><a class="roll roll--big roll--dark" href="#reach">Bangladesh</a></li>
+            <li><a class="roll roll--big roll--dark" href="#reach">Vietnam</a></li>
+            <li><a class="roll roll--big roll--dark" href="#reach">Sri Lanka</a></li>
           </ul>
         </div>
         <div class="reach__row">
@@ -155,55 +174,12 @@
         </div>
       </div>
     </section>
-
-    <!-- ============ QUALITY ============ -->
-    <section class="quality" id="quality">
-      <div class="section-head section-head--light">
-        <p class="eyebrow eyebrow--mint">Lab-tested</p>
-        <h2 class="display reveal-words">Tested before it reaches <span class="grad-text">your bath.</span></h2>
-      </div>
-      <div class="q-grid">
-        <article class="q-card q-card--cream reveal-up">
-          <div class="q-card__band"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg><span>COA · EVERY LOT</span></div>
-          <h3>Batch QC</h3><p>pH, viscosity, solid content and specific gravity, checked on every lot.</p>
-        </article>
-        <article class="q-card reveal-up">
-          <div class="fibres"><span>CA</span><span>CO</span><span>PA</span><span>PES</span><span>PAC</span><span>WO</span></div>
-          <h3>Wash fastness &amp; staining</h3><p>ISO 105-C06 type wash tests on multifibre strips. Grade 4–5 on both colour change and staining.</p>
-        </article>
-        <article class="q-card reveal-up">
-          <div class="ramp"><span></span><span></span><span></span><span></span><span></span></div>
-          <h3>Colour measurement</h3><p>Spectrophotometer readings and light-box shade checks.</p>
-        </article>
-        <article class="q-card q-card--cream reveal-up">
-          <div class="q-card__band q-card__band--teal"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M12 6.5V12l3.5 2"/></svg><span>FOAM · WATER · SHELF</span></div>
-          <h3>Foam, hard water &amp; stability</h3><p>Foam height, calcium tolerance and storage-stability checks.</p>
-        </article>
-        <article class="q-card q-card--wide reveal-up">
-          <h3>Documentation with every consignment</h3>
-          <ul class="chips chips--light"><li>Technical data sheet</li><li>Safety data sheet</li><li>Certificate of analysis</li><li>GOTS approved input</li><li>ZDHC MRSL conformant</li><li>APEO &amp; NPEO free</li><li>Formaldehyde free</li></ul>
-        </article>
-      </div>
-    </section>
-
-    <!-- ============ CTA ============ -->
-    <section class="cta" id="contact">
-      <div class="cta__inner">
-        <p class="eyebrow eyebrow--mint">Let's talk</p>
-        <h2 class="display reveal-words">Make your shades <span class="grad-text">cleaner.</span></h2>
-        <p class="reveal-up">Try AeSop on your own shade. We'll send a trial sample and a recipe for your machine.</p>
-        <div class="cta__links reveal-up">
-          <a class="btn btn--gold" href="tel:+919820528708"><span class="roll">+91 98205 28708</span></a>
-          <a class="btn btn--ghost" href="mailto:info@aevachemicals.com"><span class="roll">info@aevachemicals.com</span></a>
-          <a class="btn btn--ghost" href="https://wa.me/919820528708" target="_blank" rel="noopener"><span class="roll">Chat on WhatsApp</span></a>
-        </div>
-        <p class="cta__addr reveal-up">13-A, Laxmi Industrial Estate, New Link Road, Andheri West, Mumbai 400 053, India</p>
-      </div>
-    </section>
   </main>
 
-  <!-- ============ FOOTER (screenshot 2 style) ============ -->
-  <footer class="footer" id="footer">
+  <!-- ============ FOOTER: halftone wordmark ============ -->
+  <footer class="hwf-root" id="footer">
+    <canvas class="hwf-canvas" aria-hidden="true"></canvas>
+    <span class="hwf-sr">Aeva Chemicals</span>
     <div class="footer__cols">
       <div class="footer__col">
         <p class="footer__h">Follow</p>
@@ -219,11 +195,11 @@
         <p class="footer__h">Products</p>
         <ul class="footer__sub">
           <li><a class="roll" href="aesop.html">AeSop Soaping Agent</a></li>
-          <li><a class="roll" href="#contact">Anti-Backstaining System</a></li>
+          <li><a class="roll" href="aesop.html">Anti-Backstaining System</a></li>
           <li><a class="roll" href="aekomala.html">AeKomala Cationic Softener</a></li>
-          <li><a class="roll" href="#contact">Tailor-made Formulations</a></li>
-          <li><a class="roll" href="#quality">Technical Data Sheets</a></li>
-          <li><a class="roll" href="#quality">Safety Data Sheets</a></li>
+          <li><a class="roll" href="#tailor">Tailor-made Formulations</a></li>
+          <li><a class="roll" href="assets/documents/aesop-brochure.pdf" target="_blank" rel="noopener">Technical Data Sheets</a></li>
+          <li><a class="roll" href="assets/documents/aekomala-sds.pdf" target="_blank" rel="noopener">Safety Data Sheets</a></li>
         </ul>
       </div>
 
@@ -238,16 +214,9 @@
           <li><a class="roll" href="#reach">Export Houses</a></li>
         </ul>
       </div>
-
-    </div>
-
-    <div class="footer__word" aria-hidden="true">
-      <div class="footer__fog"><i></i><i></i><i></i></div>
-      <span id="bigWord">Aeva Chemicals</span>
-      <div class="footer__fog footer__fog--front"><i></i></div>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=20261103y"></script>
 </body>
 </html>
