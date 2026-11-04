@@ -107,7 +107,7 @@ export function createSceneSurfaces({ scene, resources, backdropColor = "#f4f1e8
   const backdrop = new THREE.Mesh(
     resources.own(new THREE.PlaneGeometry(28, 18)),
     resources.own(new THREE.MeshBasicMaterial({
-      color: new THREE.Color(backdropColor),
+      color: new THREE.Color("#ffffff"), // home hero runs on white
       depthWrite: false,
       toneMapped: false,
     })),

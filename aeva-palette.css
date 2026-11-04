@@ -48,15 +48,15 @@ body:has(.hero-stage) .topbar a:hover,
 body:has(.hero-stage) .projects-view-link:hover { color: var(--aeva-leaf); }
 body:has(.hero-stage) .quote-section,
 body:has(.hero-stage) .quote-section-cell,
-body:has(.hero-stage) .site-loader-cell,
+body:has(.hero-stage) .site-loader-cell { background: var(--aeva-emerald); }
 body:has(.hero-stage) .site-footer-content,
-body:has(.hero-stage) .site-footer-pixel-cell { background: var(--aeva-emerald); }
+body:has(.hero-stage) .site-footer-pixel-cell { background: var(--aeva-cream); }
 body:has(.hero-stage) .quote-section-inner { mix-blend-mode: normal; }
 body:has(.hero-stage) .quote-section-inner p { color: var(--aeva-cream); }
 body:has(.hero-stage) .quote-section-hover-cell { background: var(--aeva-leaf); }
 body:has(.hero-stage) .site-footer-sublead {
-  background: var(--aeva-cream);
-  color: var(--aeva-ink);
+  background: var(--aeva-ink);
+  color: var(--aeva-cream);
   padding: .75rem;
 }
 body:has(.hero-stage) .site-footer-name,
@@ -68,18 +68,22 @@ body:has(.hero-stage) .site-footer-language-button,
 body:has(.hero-stage) .site-footer-contact-link,
 body:has(.hero-stage) .site-footer-contact-input,
 body:has(.hero-stage) .site-footer-contact-button,
-body:has(.hero-stage) .site-footer-contact-input::placeholder { color: var(--aeva-cream); }
+body:has(.hero-stage) .site-footer-contact-input::placeholder { color: var(--aeva-ink); }
 body:has(.hero-stage) .site-footer-language-button,
 body:has(.hero-stage) .site-footer-contact-input,
 body:has(.hero-stage) .site-footer-contact-button,
 body:has(.hero-stage) .site-footer-top,
-body:has(.hero-stage) .site-footer-top-col + .site-footer-top-col { border-color: var(--aeva-cream); }
+body:has(.hero-stage) .site-footer-top-col + .site-footer-top-col { border-color: var(--aeva-ink); }
 body:has(.hero-stage) .site-footer-language-button-fill { background: var(--aeva-leaf); }
 body:has(.hero-stage) .site-footer-language-button-text::after { color: var(--aeva-cream); }
 body:has(.hero-stage) .site-footer-contact-form:focus-within .site-footer-contact-input,
 body:has(.hero-stage) .site-footer-contact-form:focus-within .site-footer-contact-button,
-body:has(.hero-stage) .site-footer-contact-button:hover { color: var(--aeva-gold); border-color: var(--aeva-gold); }
-body:has(.hero-stage) .site-footer-wordmark-text { fill: var(--aeva-cream); }
+body:has(.hero-stage) .site-footer-contact-button:hover { color: var(--aeva-leaf); border-color: var(--aeva-leaf); }
+/* the halftone name (footer-halftone.js) replaces the wordmark and runner */
+body:has(.hero-stage) .site-footer-wordmark-wrap { display: none; }
+body:has(.hero-stage) .site-footer-content { padding-bottom: 0; }
+body:has(.hero-stage) .site-footer-bottom { position: relative; flex: none; width: 100%; min-height: 0; padding: 0; margin: auto 0 0; cursor: pointer; }
+.aeva-dots { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; display: block; } /* height set by footer-halftone.js so dots stay round */
 body:has(.hero-stage) .site-footer-corner,
 body:has(.hero-stage) .site-footer-nav .topbar-link-create::after { background: var(--aeva-gold); }
 
@@ -87,3 +91,48 @@ body:has(.hero-stage) .site-footer-nav .topbar-link-create::after { background: 
   outline: 2px solid var(--aeva-gold);
   outline-offset: 4px;
 }
+body:has(.hero-stage) .site-footer-content > .site-footer-corner-bottom-left,
+body:has(.hero-stage) .site-footer-content > .site-footer-corner-bottom-right { display: none; }
+/* pixel steps from the emerald quote down into the cream footer */
+body:has(.hero-stage) .site-footer-pixel-edge { background: var(--aeva-emerald); }
+/* About: Tailor-made section (about-panels.js) */
+.aeva-tailor {
+  position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 64px); align-items: center;
+  width: 100vw; margin-left: calc(50% - 50vw); padding: clamp(56px, 7vw, 96px) clamp(20px, 6vw, 110px);
+  color: var(--aeva-ink); font-family: "Jost", system-ui, sans-serif; text-transform: none; text-align: left; /* sits on the block transition behind it */
+}
+.aeva-tailor__eyebrow { margin: 0 0 clamp(20px, 2.4vw, 34px); font: 400 12px/1.4 neueralMono, monospace; letter-spacing: .2em; text-transform: uppercase; color: var(--aeva-leaf); }
+.aeva-tailor h2 { margin: 0; font-family: inherit; font-weight: 500; font-size: clamp(44px, 6vw, 92px); line-height: .98; letter-spacing: -.03em; text-transform: none; }
+.aeva-tailor__lede { margin: clamp(20px, 2.4vw, 34px) 0; max-width: 640px; font-size: clamp(17px, 1.35vw, 21px); line-height: 1.45; text-transform: none; }
+.aeva-points { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; max-width: 640px; }
+.aeva-points > div {
+  display: flex; flex-direction: column; gap: 4px; min-width: 0; padding: 18px;
+  background: color-mix(in srgb, var(--aeva-cream) 91%, var(--aeva-emerald));
+  border: 1px solid color-mix(in srgb, var(--aeva-ink) 14%, transparent); border-radius: 18px;
+}
+.aeva-points i { width: 22px; height: 22px; margin-bottom: 8px; border-radius: 6px; }
+.aeva-points b { font-size: 18px; font-weight: 600; }
+.aeva-points span { font-size: 14px; color: color-mix(in srgb, var(--aeva-ink) 74%, transparent); }
+.aeva-tailor__art { display: flex; flex-direction: column; min-width: 0; }
+.aeva-tailor__liquid { position: relative; width: 100%; aspect-ratio: 1; overflow: hidden; }
+.aeva-liquid { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.aeva-tailor__caption { display: flex; align-items: flex-end; justify-content: space-between; margin-top: 8px; color: var(--aeva-emerald); }
+.aeva-tailor__caption p { margin: 0; font-size: clamp(32px, 3.2vw, 48px); line-height: 1.1; letter-spacing: -.025em; }
+.aeva-tailor__caption span { color: var(--aeva-leaf); }
+.aeva-tailor__caption button { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid rgba(11, 68, 52, .4); border-radius: 50%; background: transparent; color: inherit; cursor: pointer; }
+.aeva-tailor__caption button[hidden] { display: none; }
+.aeva-tailor__caption .is-play { display: none; }
+.aeva-tailor__caption [aria-pressed="true"] .is-pause { display: none; }
+.aeva-tailor__caption [aria-pressed="true"] .is-play { display: block; }
+@media (max-width: 860px) { .aeva-tailor { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .aeva-points { grid-template-columns: 1fr; } }
+body:has(.hero-stage) .aeva-tailor__lede,
+body:has(.hero-stage) .aeva-tailor__caption p,
+body:has(.hero-stage) .aeva-points b,
+body:has(.hero-stage) .aeva-points span { font-family: "Jost", system-ui, sans-serif; font-weight: 400; }
+body:has(.hero-stage) .aeva-points b { font-weight: 600; }
+/* home page runs on white; the transition blocks fill in as that white background */
+body:has(.hero-stage) { --aeva-cream: #fff; }
+body:has(.hero-stage) .page-entry-panel-cell { background: var(--aeva-cream); }
+/* the 3D renderer dims its white backdrop a little; lift it back to pure white */
+body:has(.hero-stage) .morph-canvas { filter: brightness(1.13); }
