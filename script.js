@@ -417,6 +417,7 @@
   }
 
   /* ---------- Hero title ---------- */
+  if ($(".hero__rotator")) {
   const counter = { n: 0 };
   $$(".hero__title .split").forEach((s) => splitChars(s, counter));
 
@@ -459,6 +460,7 @@
   };
   (document.fonts ? document.fonts.ready : Promise.resolve()).then(start);
   addEventListener("resize", setRotWidth);
+  }
 
   /* ---------- Scroll reveals ---------- */
   $$(".reveal-words").forEach(splitWords);

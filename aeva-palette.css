@@ -1,0 +1,89 @@
+@font-face {
+  font-family: monumentHeading;
+  src: url("reference-home/_next/static/media/PPMonumentExtended_Bold-s.3nd20y3e6r2ln.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 900;
+}
+@font-face {
+  font-family: neueHeading;
+  src: url("reference-home/_next/static/media/PPNeueMontreal_Regular-s.0_8jzx7e7pw0o.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 400;
+}
+@font-face {
+  font-family: neueHeading;
+  src: url("reference-home/_next/static/media/PPNeueMontreal_Semibold-s.2cdz_6gochybr.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 600 700;
+}
+@font-face {
+  font-family: neueralMono;
+  src: url("reference-home/_next/static/media/OONeureal_SemiMono-s.1nl5dhp-a-fko.otf") format("opentype");
+  font-display: swap;
+}
+
+:root {
+  --aeva-cream: #f4f1e8;
+  --aeva-emerald: #0b4434;
+  --aeva-leaf: #0b6b4f;
+  --aeva-gold: #e8b84b;
+  --aeva-ink: #16211c;
+}
+
+body:has(.hero-stage) {
+  --scene-base: var(--aeva-cream);
+  --off-white: var(--aeva-cream);
+  --white: var(--aeva-cream);
+  --black: var(--aeva-ink);
+  --orange: var(--aeva-gold);
+  background: var(--aeva-cream);
+  color: var(--aeva-ink);
+}
+html:has(.hero-stage), body:has(.hero-stage) { overflow-x: clip; }
+body:has(.hero-stage) .hero-title,
+body:has(.hero-stage) .hero-about-copy,
+body:has(.hero-stage) .page-entry-content,
+body:has(.hero-stage) .projects-section { color: var(--aeva-ink); }
+body:has(.hero-stage) .topbar a:hover,
+body:has(.hero-stage) .projects-view-link:hover { color: var(--aeva-leaf); }
+body:has(.hero-stage) .quote-section,
+body:has(.hero-stage) .quote-section-cell,
+body:has(.hero-stage) .site-loader-cell,
+body:has(.hero-stage) .site-footer-content,
+body:has(.hero-stage) .site-footer-pixel-cell { background: var(--aeva-emerald); }
+body:has(.hero-stage) .quote-section-inner { mix-blend-mode: normal; }
+body:has(.hero-stage) .quote-section-inner p { color: var(--aeva-cream); }
+body:has(.hero-stage) .quote-section-hover-cell { background: var(--aeva-leaf); }
+body:has(.hero-stage) .site-footer-sublead {
+  background: var(--aeva-cream);
+  color: var(--aeva-ink);
+  padding: .75rem;
+}
+body:has(.hero-stage) .site-footer-name,
+body:has(.hero-stage) .site-footer-lead,
+body:has(.hero-stage) .site-footer-col-title,
+body:has(.hero-stage) .site-footer-nav a,
+body:has(.hero-stage) .site-footer-language-title,
+body:has(.hero-stage) .site-footer-language-button,
+body:has(.hero-stage) .site-footer-contact-link,
+body:has(.hero-stage) .site-footer-contact-input,
+body:has(.hero-stage) .site-footer-contact-button,
+body:has(.hero-stage) .site-footer-contact-input::placeholder { color: var(--aeva-cream); }
+body:has(.hero-stage) .site-footer-language-button,
+body:has(.hero-stage) .site-footer-contact-input,
+body:has(.hero-stage) .site-footer-contact-button,
+body:has(.hero-stage) .site-footer-top,
+body:has(.hero-stage) .site-footer-top-col + .site-footer-top-col { border-color: var(--aeva-cream); }
+body:has(.hero-stage) .site-footer-language-button-fill { background: var(--aeva-leaf); }
+body:has(.hero-stage) .site-footer-language-button-text::after { color: var(--aeva-cream); }
+body:has(.hero-stage) .site-footer-contact-form:focus-within .site-footer-contact-input,
+body:has(.hero-stage) .site-footer-contact-form:focus-within .site-footer-contact-button,
+body:has(.hero-stage) .site-footer-contact-button:hover { color: var(--aeva-gold); border-color: var(--aeva-gold); }
+body:has(.hero-stage) .site-footer-wordmark-text { fill: var(--aeva-cream); }
+body:has(.hero-stage) .site-footer-corner,
+body:has(.hero-stage) .site-footer-nav .topbar-link-create::after { background: var(--aeva-gold); }
+
+:where(body:has(.hero-stage), .aeva-product) :focus-visible {
+  outline: 2px solid var(--aeva-gold);
+  outline-offset: 4px;
+}
