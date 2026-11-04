@@ -136,3 +136,13 @@ body:has(.hero-stage) { --aeva-cream: #fff; }
 body:has(.hero-stage) .page-entry-panel-cell { background: var(--aeva-cream); }
 /* the 3D renderer dims its white backdrop a little; lift it back to pure white */
 body:has(.hero-stage) .morph-canvas { filter: brightness(1.13); }
+/* client logo in the header, in place of the plain text name */
+.topbar-name {
+  display: block; width: 122px; height: 40px; overflow: hidden; color: transparent; font-size: 0;
+  background: url("assets/aeva-logo.png") left center / contain no-repeat;
+}
+.topbar-name { width: 140px; height: 46px; }
+.nav__brand { display: block; width: 140px; height: 46px; background: url("assets/aeva-logo.png") left center / contain no-repeat; }
+.nav__brand > * { display: none !important; }
+/* keep the hero title clear of the logo */
+body:has(.hero-stage) .hero-title-stack { padding-top: 104px; }
