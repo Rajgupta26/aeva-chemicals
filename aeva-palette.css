@@ -46,6 +46,53 @@ body:has(.hero-stage) .page-entry-content,
 body:has(.hero-stage) .projects-section { color: var(--aeva-ink); }
 body:has(.hero-stage) .topbar a:hover,
 body:has(.hero-stage) .projects-view-link:hover { color: var(--aeva-leaf); }
+
+.aeva-product-panel {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: clamp(7px, 1.25vw, 18px);
+  padding: clamp(16px, 4vw, 60px);
+  color: var(--aeva-ink);
+  pointer-events: none;
+}
+.aeva-product-panel__backdrop {
+  position: absolute;
+  inset: 0;
+  background: var(--aeva-cream);
+  isolation: isolate;
+}
+.aeva-product-panel__backdrop[data-product="02"] {
+  background: color-mix(in srgb, var(--aeva-cream) 92%, var(--aeva-leaf));
+}
+.aeva-product-panel__backdrop::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 8% 6%;
+  background: url("assets/product-flask.svg") no-repeat right center / contain;
+  opacity: .22;
+}
+.aeva-product-panel__category {
+  color: var(--aeva-leaf);
+  font: 500 13px/1.25 var(--font-body-main);
+  text-transform: uppercase;
+}
+.aeva-product-panel__name {
+  margin: 0;
+  font: 600 clamp(24px, 3.4vw, 56px)/1 var(--font-heading-neue-main);
+  letter-spacing: -.045em;
+}
+.aeva-product-panel__copy {
+  max-width: 34ch;
+  font: 400 13px/1.35 var(--font-body-main);
+}
+.aeva-products-cycle .projects-cycle-copy-layer { transition: none; }
+.projects-view-link.aeva-product-mobile-link { position: relative; inset: auto; margin-top: 1rem; }
 body:has(.hero-stage) .quote-section,
 body:has(.hero-stage) .quote-section-cell,
 body:has(.hero-stage) .site-loader-cell { background: var(--aeva-emerald); }
