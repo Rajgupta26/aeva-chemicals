@@ -1,5 +1,5 @@
-import * as THREE from "/reference-home/morph-pen/vendor/three/build/three.webgpu.js";
-import { RectAreaLightTexturesLib } from "/reference-home/morph-pen/vendor/three/examples/jsm/lights/RectAreaLightTexturesLib.js";
+import * as THREE from "/aeva-chemicals/reference-home/morph-pen/vendor/three/build/three.webgpu.js";
+import { RectAreaLightTexturesLib } from "/aeva-chemicals/reference-home/morph-pen/vendor/three/examples/jsm/lights/RectAreaLightTexturesLib.js";
 import { SCENE_CONFIG } from "./scene-core.js";
 
 export function initializeRectAreaLightTextures() {

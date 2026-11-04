@@ -1,6 +1,6 @@
-import * as THREE from "/reference-home/morph-pen/vendor/three/build/three.webgpu.js";
-import { EXRLoader } from "/reference-home/morph-pen/vendor/three/examples/jsm/loaders/EXRLoader.js";
-import { HDRLoader } from "/reference-home/morph-pen/vendor/three/examples/jsm/loaders/HDRLoader.js";
+import * as THREE from "/aeva-chemicals/reference-home/morph-pen/vendor/three/build/three.webgpu.js";
+import { EXRLoader } from "/aeva-chemicals/reference-home/morph-pen/vendor/three/examples/jsm/loaders/EXRLoader.js";
+import { HDRLoader } from "/aeva-chemicals/reference-home/morph-pen/vendor/three/examples/jsm/loaders/HDRLoader.js";
 
 export function createEnvironmentController({ renderer, scene, generatedEnvironment, resources }) {
   let releaseActive = () => {};

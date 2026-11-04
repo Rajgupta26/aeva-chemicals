@@ -1,5 +1,5 @@
 import { withResourceScope } from "./resource-scope.js";
-import { DEFAULT_MUSIC_REACTIVE_STATE, MUSIC_REACTIVE_EVENT } from "/reference-home/music-reactive-bridge.js";
+import { DEFAULT_MUSIC_REACTIVE_STATE, MUSIC_REACTIVE_EVENT } from "/aeva-chemicals/reference-home/music-reactive-bridge.js";
 
 export function createMusicReactiveInput(parent) {
   return withResourceScope(parent, (resources) => {

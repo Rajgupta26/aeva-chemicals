@@ -7,8 +7,8 @@ import { createPointerInput } from "./modules/pointer-input.js";
 import { createCubeSplit } from "./modules/cube-split.js";
 import { createSurfaceHoverGrid } from "./modules/surface-hover-grid.js";
 import { createSurfaceHoverDust } from "./modules/surface-hover-dust.js";
-import * as THREE from "/reference-home/morph-pen/vendor/three/build/three.module.js";
-import { HDRLoader } from "/reference-home/morph-pen/vendor/three/examples/jsm/loaders/HDRLoader.js";
+import * as THREE from "/aeva-chemicals/reference-home/morph-pen/vendor/three/build/three.module.js";
+import { HDRLoader } from "/aeva-chemicals/reference-home/morph-pen/vendor/three/examples/jsm/loaders/HDRLoader.js";
 import {
   attachSceneEventBindings,
   createResizeController,
@@ -27,7 +27,7 @@ const SCENE_CONFIG = {
   exposure: 0.8,
 };
 
-const HDR_ENVIRONMENT_URL = "/reference-home/morph-pen/studio_kontrast_fresh_03_1k.hdr";
+const HDR_ENVIRONMENT_URL = "/aeva-chemicals/reference-home/morph-pen/studio_kontrast_fresh_03_1k.hdr";
 
 function isIosBrowser() {
   return (

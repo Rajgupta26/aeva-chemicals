@@ -1,4 +1,4 @@
-import * as THREE from "/reference-home/morph-pen/vendor/three/build/three.webgpu.js";
+import * as THREE from "/aeva-chemicals/reference-home/morph-pen/vendor/three/build/three.webgpu.js";
 
 export const ENVIRONMENT_URLS = {
   "studio-hdr": new URL("../studio_kontrast_fresh_03_1k.hdr", import.meta.url).href,

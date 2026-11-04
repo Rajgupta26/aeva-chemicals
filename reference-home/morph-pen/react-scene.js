@@ -1,7 +1,7 @@
 import { createResourceScope } from "./modules/resource-scope.js";
 import { createSurfaceRaycast } from "./modules/surface-raycast.js";
-import * as THREE from "/reference-home/morph-pen/vendor/three/build/three.webgpu.js";
-import WebGPU from "/reference-home/morph-pen/vendor/three/examples/jsm/capabilities/WebGPU.js";
+import * as THREE from "/aeva-chemicals/reference-home/morph-pen/vendor/three/build/three.webgpu.js";
+import WebGPU from "/aeva-chemicals/reference-home/morph-pen/vendor/three/examples/jsm/capabilities/WebGPU.js";
 import {
   createBlobAnchorDefinitions,
   createBlobGeometryState,

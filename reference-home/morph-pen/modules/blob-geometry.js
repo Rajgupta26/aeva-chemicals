@@ -1,4 +1,4 @@
-import * as THREE from "/reference-home/morph-pen/vendor/three/build/three.webgpu.js";
+import * as THREE from "/aeva-chemicals/reference-home/morph-pen/vendor/three/build/three.webgpu.js";
 
 export function createBlobGeometryState(blobBaseGeometry) {
   const vertexCount = blobBaseGeometry.attributes.position.count;
