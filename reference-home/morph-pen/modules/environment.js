@@ -56,7 +56,7 @@ export function createEnvironmentController({ renderer, scene, generatedEnvironm
     const format = detectEnvironmentFormat(url, hint);
     const isHdr = format === "hdr";
     const loader = isHdr ? hdrLoader : exrLoader;
-    const response = await fetch(url, { cache: "no-store", signal: abortController.signal });
+    const response = await fetch(url, { signal: abortController.signal });
     resources.check();
     if (!response.ok) {
       throw new Error(`Environment request failed: ${response.status}`);

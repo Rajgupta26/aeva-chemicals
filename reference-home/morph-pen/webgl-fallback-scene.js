@@ -447,7 +447,7 @@ function createFallbackScrollState() {
   };
 }
 
-export async function initWebGLFallbackScene({ mount, canvas, status, onError, signal, diagnostics, backdropColor = "#f4f1e8" }) {
+export async function initWebGLFallbackScene({ mount, canvas, status, onError, signal, diagnostics, backdropColor = "#ffffff" }) {
   const resources = createResourceScope({ signal });
   const dispose = resources.dispose;
   try {
@@ -516,7 +516,7 @@ export async function initWebGLFallbackScene({ mount, canvas, status, onError, s
     const backdrop = new THREE.Mesh(
       resources.own(new THREE.PlaneGeometry(28, 18)),
       resources.own(new THREE.MeshBasicMaterial({
-        color: new THREE.Color("#ffffff"), // home hero runs on white
+        color: new THREE.Color(backdropColor),
         depthWrite: false,
         toneMapped: false,
       })),

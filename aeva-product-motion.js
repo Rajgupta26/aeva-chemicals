@@ -15,12 +15,12 @@ function stopMorph() {
 
 async function startMorph() {
   stopMorph();
-  if (preference.matches) return;
+  if (preference.matches || window.__aevaLite) return;
   const run = new AbortController();
   controller = run;
   const renderers = [
-    [() => import("./reference-home/morph-pen/react-scene.js"), "initMorphScene"],
-    [() => import("./reference-home/morph-pen/webgl-fallback-scene.js"), "initWebGLFallbackScene"],
+    [() => import("./reference-home/morph-pen/dist/scene-webgpu.js"), "initMorphScene"],
+    [() => import("./reference-home/morph-pen/dist/scene-webgl.js"), "initWebGLFallbackScene"],
   ];
   for (const [load, init] of renderers) {
     try {
@@ -31,7 +31,8 @@ async function startMorph() {
       mount.append(canvas);
       hero.classList.add("has-morph");
       const backdropColor = getComputedStyle(hero).getPropertyValue("--aeva-emerald").trim();
-      const cleanup = await renderer[init]({ mount, canvas, backdropColor, signal: run.signal, onError: () => {
+      const status = document.createElement("div");
+      const cleanup = await renderer[init]({ mount, canvas, status, backdropColor, signal: run.signal, onError: () => {
         if (controller === run) stopMorph();
       } });
       if (run.signal.aborted) {
@@ -88,4 +89,10 @@ addEventListener("pagehide", stopMorph);
 addEventListener("pageshow", event => {
   if (event.persisted) void startMorph();
 });
-void startMorph();
+// The 3D scene waits until the page itself has finished loading.
+const startWhenIdle = () => {
+  if ("requestIdleCallback" in window) requestIdleCallback(startMorph, { timeout: 1200 });
+  else setTimeout(startMorph, 200);
+};
+if (document.readyState === "complete") startWhenIdle();
+else addEventListener("load", startWhenIdle, { once: true });

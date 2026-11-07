@@ -18,7 +18,7 @@
 }
 @font-face {
   font-family: neueralMono;
-  src: url("reference-home/_next/static/media/OONeureal_SemiMono-s.1nl5dhp-a-fko.otf") format("opentype");
+  src: url("reference-home/_next/static/media/OONeureal_SemiMono-s.1nl5dhp-a-fko.woff2") format("woff2");
   font-display: swap;
 }
 
@@ -172,7 +172,6 @@ body:has(.hero-stage) .site-footer-pixel-edge { background: var(--aeva-emerald);
 .aeva-tailor__caption [aria-pressed="true"] .is-pause { display: none; }
 .aeva-tailor__caption [aria-pressed="true"] .is-play { display: block; }
 @media (max-width: 860px) { .aeva-tailor { grid-template-columns: 1fr; } }
-@media (max-width: 560px) { .aeva-points { grid-template-columns: 1fr; } }
 body:has(.hero-stage) .aeva-tailor__lede,
 body:has(.hero-stage) .aeva-tailor__caption p,
 body:has(.hero-stage) .aeva-points b,
@@ -182,14 +181,79 @@ body:has(.hero-stage) .aeva-points b { font-weight: 600; }
 body:has(.hero-stage) { --aeva-cream: #fff; }
 body:has(.hero-stage) .page-entry-panel-cell { background: var(--aeva-cream); }
 /* the 3D renderer dims its white backdrop a little; lift it back to pure white */
-body:has(.hero-stage) .morph-canvas { filter: brightness(1.13); }
+body:has(.hero-stage) .morph-canvas { filter: brightness(1.165); }
 /* client logo in the header, in place of the plain text name */
 .topbar-name {
   display: block; width: 122px; height: 40px; overflow: hidden; color: transparent; font-size: 0;
-  background: url("assets/aeva-logo.png") left center / contain no-repeat;
+  background: url("assets/aeva-logo.webp") left center / contain no-repeat;
 }
 .topbar-name { width: 140px; height: 46px; }
-.nav__brand { display: block; width: 140px; height: 46px; background: url("assets/aeva-logo.png") left center / contain no-repeat; }
+.nav__brand { display: block; width: 140px; height: 46px; background: url("assets/aeva-logo.webp") left center / contain no-repeat; }
 .nav__brand > * { display: none !important; }
 /* keep the hero title clear of the logo */
 body:has(.hero-stage) .hero-title-stack { padding-top: 104px; }
+
+/* Hero blob image: the first paint on desktop until the 3D scene covers it, and the
+   whole hero on phones and tablets, turned by hero-lite.js as the page scrolls. */
+.morph-scene { --blob: min(92vw, 60svh); }
+.morph-scene::before {
+  content: ""; position: absolute; z-index: -1;
+  left: calc(50% - var(--blob) / 2); top: calc(47% - var(--blob) / 2);
+  width: var(--blob); height: var(--blob);
+  background: url("assets/hero-blob.webp") center / contain no-repeat;
+}
+.aeva-lite .morph-scene::after {
+  content: ""; position: absolute; z-index: -1; opacity: .4;
+  left: calc(50% - var(--blob) / 2); top: calc(47% - var(--blob) / 2);
+  width: var(--blob); height: var(--blob);
+  background: url("assets/hero-blob.webp") center / contain no-repeat;
+  animation: aevaBlobTurn 28s linear infinite;
+}
+.aeva-lite .morph-scene::before { animation: aevaBlobDrift 11s ease-in-out infinite alternate; }
+.aeva-lite .morph-scene::before,
+.aeva-lite .morph-scene::after {
+  transform: rotate(calc(var(--hero-progress, 0) * 150deg)) scale(calc(1 - var(--hero-progress, 0) * .42));
+  will-change: transform;
+}
+/* gone before the next section slides over it */
+.aeva-lite .morph-scene { opacity: clamp(0, calc((.62 - var(--hero-progress, 0)) / .17), 1); }
+@keyframes aevaBlobDrift { from { rotate: -7deg; scale: .97; } to { rotate: 9deg; scale: 1.05; } }
+@keyframes aevaBlobTurn { to { rotate: 360deg; } }
+.aeva-lite .hero-sticky { height: 100svh; }
+.aeva-lite .site-noise-layer { display: none; } /* full-screen blended grain makes phones scroll slowly */
+
+/* The footer name reserves its height, because the dots are only set when it gets close. */
+body:has(.hero-stage) .site-footer-bottom { aspect-ratio: 1 / .1222; }
+
+/* Phones and small tablets, where the transition blocks are not used */
+.page-entry-pixel-wrap:not(:has(.page-entry-panel-secondary)) .aeva-tailor { background: var(--aeva-cream); }
+@media (max-width: 900px) {
+  .site-corner-crosses { display: none; } /* fixed at the edges, they sit on top of the text here */
+  .aeva-tailor { padding-block: 56px; }
+  .topbar-menu-toggle { position: relative; }
+  .topbar-menu-toggle::after { content: ""; position: absolute; inset: -16px; } /* easier to tap */
+  .page-entry-work-mark p { font-size: 12vw; letter-spacing: -.05em; }
+  .quote-section { padding-inline: 16px; }
+  .quote-section-inner p { font-size: clamp(1.7rem, 8.4vw, 5rem); }
+  /* phone product rows: the panel names the product, the text below describes it once */
+  .projects-list-figure .aeva-product-panel__copy,
+  .projects-mobile .projects-label { display: none; }
+  .projects-mobile .aeva-product-panel { justify-content: flex-end; }
+  .projects-mobile .aeva-product-panel__name { font-size: clamp(30px, 9vw, 56px); }
+}
+@media (max-width: 560px) {
+  .aeva-points { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .aeva-points > div { padding: 14px; border-radius: 14px; }
+  .aeva-points i { width: 18px; height: 18px; margin-bottom: 6px; border-radius: 5px; }
+  .aeva-points b { font-size: 15px; line-height: 1.2; }
+  .aeva-points span { font-size: 12.5px; }
+}
+/* Phones held sideways: the screen is short, so the hero type has to be too */
+@media (max-height: 520px) and (orientation: landscape) {
+  body:has(.hero-stage) .hero-title-stack { padding-top: 84px; }
+  .hero-title { font-size: 11vh; }
+  .morph-scene { --blob: 62svh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aeva-lite .morph-scene::before, .aeva-lite .morph-scene::after { animation: none; }
+}

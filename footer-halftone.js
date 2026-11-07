@@ -41,7 +41,7 @@
       m.font = "700 " + size + "px " + FONT;
       m.fillText(WORD, (w - box.width) / 2, h - low - 1);
       const img = m.getImageData(0, 0, w, h).data;
-      const gap = w < 700 ? 4 : 6, cols = Math.ceil(w / gap), rows = Math.ceil(h / gap), tmp = [];
+      const gap = w < 700 ? 3 : 6, cols = Math.ceil(w / gap), rows = Math.ceil(h / gap), tmp = [];
       for (let gy = 0; gy < rows; gy++) {
         for (let gx = 0; gx < cols; gx++) {
           let sum = 0; // coverage: average alpha over a 3x3 sample of the cell
@@ -117,12 +117,23 @@
     new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) wake(); }).observe(root);
   }
 
-  const font = document.createElement("link");
-  font.rel = "stylesheet";
-  font.href = "https://fonts.googleapis.com/css2?family=Jost:wght@700&display=swap";
-  document.head.append(font);
-  // Wait for hydration and for Jost, so the word is set in its real face.
-  const ready = () => document.fonts.load('700 100px "Jost"').catch(() => {}).then(start);
-  font.addEventListener("load", () => setTimeout(ready, 300));
-  font.addEventListener("error", () => setTimeout(start, 300));
+  function prepare() {
+    const font = document.createElement("link");
+    font.rel = "stylesheet";
+    font.href = "https://fonts.googleapis.com/css2?family=Jost:wght@700&display=swap";
+    document.head.append(font);
+    // Wait for Jost, so the word is set in its real face.
+    font.addEventListener("load", () => document.fonts.load('700 100px "Jost"').catch(() => {}).then(start));
+    font.addEventListener("error", start);
+  }
+  // Setting the word is heavy, so it waits until the footer is close.
+  window.__aevaWhenStarted(() => {
+    const footer = document.querySelector(".site-footer");
+    if (!footer) return;
+    new IntersectionObserver(([e], observer) => {
+      if (!e.isIntersecting) return;
+      observer.disconnect();
+      prepare();
+    }, { rootMargin: "1000px 0px" }).observe(footer);
+  });
 })();

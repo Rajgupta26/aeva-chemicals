@@ -103,7 +103,7 @@
     };
     const wake = () => { last = 0; if (!raf && visible) raf = requestAnimationFrame(tick); };
     new ResizeObserver(() => {
-      const scale = Math.min(devicePixelRatio || 1, 2);
+      const scale = Math.min(devicePixelRatio || 1, window.__aevaLite ? 1.5 : 2);
       canvas.width = Math.max(1, Math.round(clip.clientWidth * scale));
       canvas.height = Math.max(1, Math.round(clip.clientHeight * scale));
       gl.viewport(0, 0, canvas.width, canvas.height);
@@ -133,7 +133,12 @@
       paint();
       wake();
     };
-    image.src = "assets/formulation-liquid-white.webp";
+    // Fetched only when the section is close, in a smaller size on phones and tablets.
+    new IntersectionObserver(([e], observer) => {
+      if (!e.isIntersecting) return;
+      observer.disconnect();
+      image.src = window.__aevaLite ? "assets/formulation-liquid-white-720.webp" : "assets/formulation-liquid-white.webp";
+    }, { rootMargin: "800px 0px" }).observe(clip);
   }
 
   function start() {
@@ -143,7 +148,7 @@
     document.head.append(font);
     const wrap = document.querySelector(".page-entry-gallery-wrap");
     if (wrap) section(wrap);
+    dispatchEvent(new Event("resize")); // scroll animations re-measure the taller page
   }
-  if (document.readyState === "complete") setTimeout(start, 300);
-  else addEventListener("load", () => setTimeout(start, 300));
+  window.__aevaWhenStarted(start);
 })();

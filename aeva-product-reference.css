@@ -111,3 +111,28 @@
 @media (prefers-reduced-motion: reduce) {
   .aeva-product [data-product-reveal] { transition: none; }
 }
+
+/* Phones and tablets: a light blob image instead of the 3D scene, and no reveal wait */
+.aeva-lite .aeva-product .p-morph img { display: none; }
+.aeva-lite .aeva-product .p-morph::before {
+  content: ""; position: absolute; inset: 0;
+  background: url("assets/hero-blob-dark.webp") center / min(88%, 520px) no-repeat;
+  animation: aevaBlobDrift 11s ease-in-out infinite alternate;
+}
+.aeva-lite .aeva-product [data-product-reveal].is-pending { clip-path: none; transform: none; }
+@media (max-width: 780px) {
+  .aeva-product .p-hero__pin { position: relative; min-height: 0; gap: 0; padding: 28px var(--gutter) 28px; align-content: start; grid-template-columns: minmax(0, 1fr); }
+  .aeva-product .p-hero__title { font-size: 11.2vw; } /* sized so the longest name, AeKomala, fits */
+  .aeva-product .p-morph { inset: 0 0 auto; height: 340px; }
+  .aeva-product .p-hero__copy { margin-top: 250px; width: 100%; }
+  .aeva-product .p-footer { min-height: 0; padding-bottom: 28px; }
+  .aeva-product .p-footer__mark { margin-top: .35em; }
+}
+@media (max-width: 480px) {
+  .aeva-product .p-footer__frame { grid-template-columns: 1fr; }
+  .aeva-product .p-footer__frame > * { border-right: 0; border-bottom: 1px solid var(--aeva-cream); padding: 14px 16px; }
+  .aeva-product .p-footer__frame > :last-child { border-bottom: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aeva-lite .aeva-product .p-morph::before { animation: none; }
+}
